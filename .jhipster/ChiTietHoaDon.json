@@ -1,0 +1,39 @@
+{
+  "name": "ChiTietHoaDon",
+  "fields": [
+    {
+      "fieldName": "gia",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "soluong",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "nongSan",
+      "otherEntityRelationshipName": "chiTietHoaDon",
+      "relationshipName": "nongsan"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "hoaDon",
+      "otherEntityRelationshipName": "chiTietHoaDon",
+      "relationshipName": "hoadon"
+    }
+  ],
+  "entityTableName": "chi_tiet_hoa_don",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153948"
+}

@@ -1,0 +1,42 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="nhaCungCap">
+      <h2 data-cy="nhaCungCapDetailsHeading"><span>Nha Cung Cap</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ nhaCungCap.id }}</span>
+        </dd>
+        <dt><span>Ten NCC</span></dt>
+        <dd>
+          <span>{{ nhaCungCap.tenNCC }}</span>
+        </dd>
+        <dt><span>Chitietdiachi</span></dt>
+        <dd>
+          <span>{{ nhaCungCap.chitietdiachi }}</span>
+        </dd>
+        <dt><span>Dia Chi</span></dt>
+        <dd>
+          <div *ngIf="nhaCungCap.diaChi">
+            <a [routerLink]="['/xa-phuong', nhaCungCap.diaChi?.id, 'view']">{{ nhaCungCap.diaChi?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/nha-cung-cap', nhaCungCap.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

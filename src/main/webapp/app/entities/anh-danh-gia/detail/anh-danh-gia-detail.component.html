@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="anhDanhGia">
+      <h2 data-cy="anhDanhGiaDetailsHeading"><span>Anh Danh Gia</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ anhDanhGia.id }}</span>
+        </dd>
+        <dt><span>Ten</span></dt>
+        <dd>
+          <span>{{ anhDanhGia.ten }}</span>
+        </dd>
+        <dt><span>Danhgia</span></dt>
+        <dd>
+          <div *ngIf="anhDanhGia.danhgia">
+            <a [routerLink]="['/danh-gia', anhDanhGia.danhgia?.id, 'view']">{{ anhDanhGia.danhgia?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/anh-danh-gia', anhDanhGia.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

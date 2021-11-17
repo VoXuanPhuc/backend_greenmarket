@@ -1,0 +1,28 @@
+{
+  "name": "PhuongThucTT",
+  "fields": [
+    {
+      "fieldName": "tenPTTT",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "hoaDon",
+      "otherEntityRelationshipName": "phuongthucTT",
+      "relationshipName": "hoaDon"
+    }
+  ],
+  "entityTableName": "phuong_thuc_tt",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153947"
+}

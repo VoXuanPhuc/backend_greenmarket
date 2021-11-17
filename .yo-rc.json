@@ -42,6 +42,24 @@
     "devServerPort": 4200,
     "clientPackageManager": "npm",
     "clientThemeVariant": "",
-    "languages": ["en", "fr"]
+    "languages": ["en", "fr"],
+    "entities": [
+      "TinhTP",
+      "HuyenQuan",
+      "XaPhuong",
+      "KhachHang",
+      "NhaCungCap",
+      "DanhMuc",
+      "NongSan",
+      "AnhNongSan",
+      "PhuongThucTT",
+      "ChiTietHoaDon",
+      "HoaDon",
+      "DanhGia",
+      "AnhDanhGia",
+      "HinhThucGiaoHang",
+      "YeuThich"
+    ],
+    "lastLiquibaseTimestamp": 1637163593000
   }
 }

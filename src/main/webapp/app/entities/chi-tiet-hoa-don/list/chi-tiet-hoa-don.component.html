@@ -1,0 +1,92 @@
+<div>
+  <h2 id="page-heading" data-cy="ChiTietHoaDonHeading">
+    <span>Chi Tiet Hoa Dons</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-chi-tiet-hoa-don"
+        [routerLink]="['/chi-tiet-hoa-don/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Chi Tiet Hoa Don </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="chiTietHoaDons?.length === 0">
+    <span>No chiTietHoaDons found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="chiTietHoaDons && chiTietHoaDons.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Gia</span></th>
+          <th scope="col"><span>Soluong</span></th>
+          <th scope="col"><span>Nongsan</span></th>
+          <th scope="col"><span>Hoadon</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let chiTietHoaDon of chiTietHoaDons; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/chi-tiet-hoa-don', chiTietHoaDon.id, 'view']">{{ chiTietHoaDon.id }}</a>
+          </td>
+          <td>{{ chiTietHoaDon.gia }}</td>
+          <td>{{ chiTietHoaDon.soluong }}</td>
+          <td>
+            <div *ngIf="chiTietHoaDon.nongsan">
+              <a [routerLink]="['/nong-san', chiTietHoaDon.nongsan?.id, 'view']">{{ chiTietHoaDon.nongsan?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="chiTietHoaDon.hoadon">
+              <a [routerLink]="['/hoa-don', chiTietHoaDon.hoadon?.id, 'view']">{{ chiTietHoaDon.hoadon?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/chi-tiet-hoa-don', chiTietHoaDon.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/chi-tiet-hoa-don', chiTietHoaDon.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(chiTietHoaDon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

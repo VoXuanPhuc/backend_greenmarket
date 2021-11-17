@@ -1,0 +1,79 @@
+{
+  "name": "KhachHang",
+  "fields": [
+    {
+      "fieldName": "hoTenKH",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "tenDangNhap",
+      "fieldType": "String",
+      "fieldValidateRules": ["unique"]
+    },
+    {
+      "fieldName": "matkhau",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "sdt",
+      "fieldType": "String",
+      "fieldValidateRules": ["required", "unique"]
+    },
+    {
+      "fieldName": "ngaySinh",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gioitinh",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "chitietdiachi",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "xaPhuong",
+      "otherEntityRelationshipName": "khachHang",
+      "relationshipName": "diaChi",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "yeuThich",
+      "otherEntityRelationshipName": "khachhang",
+      "relationshipName": "yeuThich"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "danhGia",
+      "otherEntityRelationshipName": "khachhang",
+      "relationshipName": "danhGia"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "hoaDon",
+      "otherEntityRelationshipName": "khachhang",
+      "relationshipName": "hoaDon"
+    }
+  ],
+  "entityTableName": "khach_hang",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153942"
+}

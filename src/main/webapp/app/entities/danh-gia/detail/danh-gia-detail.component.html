@@ -1,0 +1,56 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="danhGia">
+      <h2 data-cy="danhGiaDetailsHeading"><span>Danh Gia</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ danhGia.id }}</span>
+        </dd>
+        <dt><span>Sao</span></dt>
+        <dd>
+          <span>{{ danhGia.sao }}</span>
+        </dd>
+        <dt><span>Chitiet</span></dt>
+        <dd>
+          <span>{{ danhGia.chitiet }}</span>
+        </dd>
+        <dt><span>Image</span></dt>
+        <dd>
+          <span>{{ danhGia.image }}</span>
+        </dd>
+        <dt><span>Ngaydanhgia</span></dt>
+        <dd>
+          <span>{{ danhGia.ngaydanhgia | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Nongsan</span></dt>
+        <dd>
+          <div *ngIf="danhGia.nongsan">
+            <a [routerLink]="['/nong-san', danhGia.nongsan?.id, 'view']">{{ danhGia.nongsan?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Khachhang</span></dt>
+        <dd>
+          <div *ngIf="danhGia.khachhang">
+            <a [routerLink]="['/khach-hang', danhGia.khachhang?.id, 'view']">{{ danhGia.khachhang?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/danh-gia', danhGia.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

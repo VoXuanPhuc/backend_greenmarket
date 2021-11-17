@@ -1,0 +1,100 @@
+<div>
+  <h2 id="page-heading" data-cy="NongSanHeading">
+    <span>Nong Sans</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-nong-san"
+        [routerLink]="['/nong-san/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Nong San </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="nongSans?.length === 0">
+    <span>No nongSans found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="nongSans && nongSans.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Ten NS</span></th>
+          <th scope="col"><span>Gia</span></th>
+          <th scope="col"><span>Soluong Nhap</span></th>
+          <th scope="col"><span>Soluong Con</span></th>
+          <th scope="col"><span>Noi San Xuat</span></th>
+          <th scope="col"><span>Mo Ta NS</span></th>
+          <th scope="col"><span>Danhmuc</span></th>
+          <th scope="col"><span>Nhacc</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let nongSan of nongSans; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/nong-san', nongSan.id, 'view']">{{ nongSan.id }}</a>
+          </td>
+          <td>{{ nongSan.tenNS }}</td>
+          <td>{{ nongSan.gia }}</td>
+          <td>{{ nongSan.soluongNhap }}</td>
+          <td>{{ nongSan.soluongCon }}</td>
+          <td>{{ nongSan.noiSanXuat | formatMediumDatetime }}</td>
+          <td>{{ nongSan.moTaNS | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="nongSan.danhmuc">
+              <a [routerLink]="['/danh-muc', nongSan.danhmuc?.id, 'view']">{{ nongSan.danhmuc?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="nongSan.nhacc">
+              <a [routerLink]="['/nha-cung-cap', nongSan.nhacc?.id, 'view']">{{ nongSan.nhacc?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/nong-san', nongSan.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/nong-san', nongSan.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(nongSan)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+{
+  "name": "HinhThucGiaoHang",
+  "fields": [
+    {
+      "fieldName": "mota",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "hoaDon",
+      "otherEntityRelationshipName": "phuongthucGH",
+      "relationshipName": "hoaDon"
+    }
+  ],
+  "entityTableName": "hinh_thuc_giao_hang",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153952"
+}

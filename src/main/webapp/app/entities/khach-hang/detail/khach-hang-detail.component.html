@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="khachHang">
+      <h2 data-cy="khachHangDetailsHeading"><span>Khach Hang</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ khachHang.id }}</span>
+        </dd>
+        <dt><span>Ho Ten KH</span></dt>
+        <dd>
+          <span>{{ khachHang.hoTenKH }}</span>
+        </dd>
+        <dt><span>Ten Dang Nhap</span></dt>
+        <dd>
+          <span>{{ khachHang.tenDangNhap }}</span>
+        </dd>
+        <dt><span>Matkhau</span></dt>
+        <dd>
+          <span>{{ khachHang.matkhau }}</span>
+        </dd>
+        <dt><span>Email</span></dt>
+        <dd>
+          <span>{{ khachHang.email }}</span>
+        </dd>
+        <dt><span>Sdt</span></dt>
+        <dd>
+          <span>{{ khachHang.sdt }}</span>
+        </dd>
+        <dt><span>Ngay Sinh</span></dt>
+        <dd>
+          <span>{{ khachHang.ngaySinh | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Gioitinh</span></dt>
+        <dd>
+          <span>{{ khachHang.gioitinh }}</span>
+        </dd>
+        <dt><span>Chitietdiachi</span></dt>
+        <dd>
+          <span>{{ khachHang.chitietdiachi }}</span>
+        </dd>
+        <dt><span>Dia Chi</span></dt>
+        <dd>
+          <div *ngIf="khachHang.diaChi">
+            <a [routerLink]="['/xa-phuong', khachHang.diaChi?.id, 'view']">{{ khachHang.diaChi?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/khach-hang', khachHang.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

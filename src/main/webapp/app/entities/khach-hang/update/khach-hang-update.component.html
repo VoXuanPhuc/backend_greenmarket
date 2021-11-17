@@ -1,0 +1,127 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-khach-hang-heading" data-cy="KhachHangCreateUpdateHeading">Create or edit a Khach Hang</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_hoTenKH">Ho Ten KH</label>
+          <input type="text" class="form-control" name="hoTenKH" id="field_hoTenKH" data-cy="hoTenKH" formControlName="hoTenKH" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_tenDangNhap">Ten Dang Nhap</label>
+          <input
+            type="text"
+            class="form-control"
+            name="tenDangNhap"
+            id="field_tenDangNhap"
+            data-cy="tenDangNhap"
+            formControlName="tenDangNhap"
+          />
+          <div
+            *ngIf="editForm.get('tenDangNhap')!.invalid && (editForm.get('tenDangNhap')!.dirty || editForm.get('tenDangNhap')!.touched)"
+          ></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_matkhau">Matkhau</label>
+          <input type="text" class="form-control" name="matkhau" id="field_matkhau" data-cy="matkhau" formControlName="matkhau" />
+          <div *ngIf="editForm.get('matkhau')!.invalid && (editForm.get('matkhau')!.dirty || editForm.get('matkhau')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('matkhau')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+          <div *ngIf="editForm.get('email')!.invalid && (editForm.get('email')!.dirty || editForm.get('email')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('email')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_sdt">Sdt</label>
+          <input type="text" class="form-control" name="sdt" id="field_sdt" data-cy="sdt" formControlName="sdt" />
+          <div *ngIf="editForm.get('sdt')!.invalid && (editForm.get('sdt')!.dirty || editForm.get('sdt')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('sdt')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_ngaySinh">Ngay Sinh</label>
+          <div class="d-flex">
+            <input
+              id="field_ngaySinh"
+              data-cy="ngaySinh"
+              type="datetime-local"
+              class="form-control"
+              name="ngaySinh"
+              formControlName="ngaySinh"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          <div *ngIf="editForm.get('ngaySinh')!.invalid && (editForm.get('ngaySinh')!.dirty || editForm.get('ngaySinh')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('ngaySinh')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('ngaySinh')?.errors?.ZonedDateTimelocal">
+              This field should be a date and time.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_gioitinh">Gioitinh</label>
+          <input type="text" class="form-control" name="gioitinh" id="field_gioitinh" data-cy="gioitinh" formControlName="gioitinh" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_chitietdiachi">Chitietdiachi</label>
+          <input
+            type="text"
+            class="form-control"
+            name="chitietdiachi"
+            id="field_chitietdiachi"
+            data-cy="chitietdiachi"
+            formControlName="chitietdiachi"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_diaChi">Dia Chi</label>
+          <select class="form-control" id="field_diaChi" data-cy="diaChi" name="diaChi" formControlName="diaChi">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="xaPhuongOption.id === editForm.get('diaChi')!.value?.id ? editForm.get('diaChi')!.value : xaPhuongOption"
+              *ngFor="let xaPhuongOption of diaChisCollection; trackBy: trackXaPhuongById"
+            >
+              {{ xaPhuongOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,78 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-chi-tiet-hoa-don-heading" data-cy="ChiTietHoaDonCreateUpdateHeading">Create or edit a Chi Tiet Hoa Don</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_gia">Gia</label>
+          <input type="number" class="form-control" name="gia" id="field_gia" data-cy="gia" formControlName="gia" />
+          <div *ngIf="editForm.get('gia')!.invalid && (editForm.get('gia')!.dirty || editForm.get('gia')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('gia')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('gia')?.errors?.number"> This field should be a number. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_soluong">Soluong</label>
+          <input type="number" class="form-control" name="soluong" id="field_soluong" data-cy="soluong" formControlName="soluong" />
+          <div *ngIf="editForm.get('soluong')!.invalid && (editForm.get('soluong')!.dirty || editForm.get('soluong')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('soluong')?.errors?.required"> This field is required. </small>
+            <small class="form-text text-danger" [hidden]="!editForm.get('soluong')?.errors?.number">
+              This field should be a number.
+            </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_nongsan">Nongsan</label>
+          <select class="form-control" id="field_nongsan" data-cy="nongsan" name="nongsan" formControlName="nongsan">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="nongSanOption.id === editForm.get('nongsan')!.value?.id ? editForm.get('nongsan')!.value : nongSanOption"
+              *ngFor="let nongSanOption of nongSansSharedCollection; trackBy: trackNongSanById"
+            >
+              {{ nongSanOption.id }}
+            </option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_hoadon">Hoadon</label>
+          <select class="form-control" id="field_hoadon" data-cy="hoadon" name="hoadon" formControlName="hoadon">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="hoaDonOption.id === editForm.get('hoadon')!.value?.id ? editForm.get('hoadon')!.value : hoaDonOption"
+              *ngFor="let hoaDonOption of hoaDonsSharedCollection; trackBy: trackHoaDonById"
+            >
+              {{ hoaDonOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

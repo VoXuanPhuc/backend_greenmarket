@@ -1,0 +1,96 @@
+<div>
+  <h2 id="page-heading" data-cy="DanhGiaHeading">
+    <span>Danh Gias</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-danh-gia"
+        [routerLink]="['/danh-gia/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Danh Gia </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="danhGias?.length === 0">
+    <span>No danhGias found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="danhGias && danhGias.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Sao</span></th>
+          <th scope="col"><span>Chitiet</span></th>
+          <th scope="col"><span>Image</span></th>
+          <th scope="col"><span>Ngaydanhgia</span></th>
+          <th scope="col"><span>Nongsan</span></th>
+          <th scope="col"><span>Khachhang</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let danhGia of danhGias; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/danh-gia', danhGia.id, 'view']">{{ danhGia.id }}</a>
+          </td>
+          <td>{{ danhGia.sao }}</td>
+          <td>{{ danhGia.chitiet }}</td>
+          <td>{{ danhGia.image }}</td>
+          <td>{{ danhGia.ngaydanhgia | formatMediumDatetime }}</td>
+          <td>
+            <div *ngIf="danhGia.nongsan">
+              <a [routerLink]="['/nong-san', danhGia.nongsan?.id, 'view']">{{ danhGia.nongsan?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="danhGia.khachhang">
+              <a [routerLink]="['/khach-hang', danhGia.khachhang?.id, 'view']">{{ danhGia.khachhang?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/danh-gia', danhGia.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/danh-gia', danhGia.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(danhGia)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,32 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="danhMuc">
+      <h2 data-cy="danhMucDetailsHeading"><span>Danh Muc</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ danhMuc.id }}</span>
+        </dd>
+        <dt><span>Ten DM</span></dt>
+        <dd>
+          <span>{{ danhMuc.tenDM }}</span>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/danh-muc', danhMuc.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

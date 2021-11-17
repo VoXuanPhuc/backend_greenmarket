@@ -1,0 +1,38 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="xaPhuong">
+      <h2 data-cy="xaPhuongDetailsHeading"><span>Xa Phuong</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ xaPhuong.id }}</span>
+        </dd>
+        <dt><span>Ten</span></dt>
+        <dd>
+          <span>{{ xaPhuong.ten }}</span>
+        </dd>
+        <dt><span>Huyen</span></dt>
+        <dd>
+          <div *ngIf="xaPhuong.huyen">
+            <a [routerLink]="['/huyen-quan', xaPhuong.huyen?.id, 'view']">{{ xaPhuong.huyen?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/xa-phuong', xaPhuong.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

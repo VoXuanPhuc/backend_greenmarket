@@ -1,0 +1,83 @@
+{
+  "name": "NongSan",
+  "fields": [
+    {
+      "fieldName": "tenNS",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "gia",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "soluongNhap",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "soluongCon",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "noiSanXuat",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "moTaNS",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "anhNongSan",
+      "otherEntityRelationshipName": "anhnongsan",
+      "relationshipName": "anhNongSan"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "danhGia",
+      "otherEntityRelationshipName": "nongsan",
+      "relationshipName": "danhGia"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "chiTietHoaDon",
+      "otherEntityRelationshipName": "nongsan",
+      "relationshipName": "chiTietHoaDon"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "yeuThich",
+      "otherEntityRelationshipName": "nongsan",
+      "relationshipName": "yeuThich"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "danhMuc",
+      "otherEntityRelationshipName": "nongSan",
+      "relationshipName": "danhmuc"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "nhaCungCap",
+      "otherEntityRelationshipName": "nongSan",
+      "relationshipName": "nhacc"
+    }
+  ],
+  "entityTableName": "nong_san",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153945"
+}

@@ -1,0 +1,66 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="hoaDon">
+      <h2 data-cy="hoaDonDetailsHeading"><span>Hoa Don</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span>ID</span></dt>
+        <dd>
+          <span>{{ hoaDon.id }}</span>
+        </dd>
+        <dt><span>Tongthanhtoan</span></dt>
+        <dd>
+          <span>{{ hoaDon.tongthanhtoan }}</span>
+        </dd>
+        <dt><span>Chiphivanchuyen</span></dt>
+        <dd>
+          <span>{{ hoaDon.chiphivanchuyen }}</span>
+        </dd>
+        <dt><span>Ngaythanhtoan</span></dt>
+        <dd>
+          <span>{{ hoaDon.ngaythanhtoan | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Ngaytao</span></dt>
+        <dd>
+          <span>{{ hoaDon.ngaytao | formatMediumDatetime }}</span>
+        </dd>
+        <dt><span>Trangthai</span></dt>
+        <dd>
+          <span>{{ hoaDon.trangthai }}</span>
+        </dd>
+        <dt><span>Phuongthuc TT</span></dt>
+        <dd>
+          <div *ngIf="hoaDon.phuongthucTT">
+            <a [routerLink]="['/phuong-thuc-tt', hoaDon.phuongthucTT?.id, 'view']">{{ hoaDon.phuongthucTT?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Phuongthuc GH</span></dt>
+        <dd>
+          <div *ngIf="hoaDon.phuongthucGH">
+            <a [routerLink]="['/hinh-thuc-giao-hang', hoaDon.phuongthucGH?.id, 'view']">{{ hoaDon.phuongthucGH?.id }}</a>
+          </div>
+        </dd>
+        <dt><span>Khachhang</span></dt>
+        <dd>
+          <div *ngIf="hoaDon.khachhang">
+            <a [routerLink]="['/khach-hang', hoaDon.khachhang?.id, 'view']">{{ hoaDon.khachhang?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span>Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/hoa-don', hoaDon.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span>Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

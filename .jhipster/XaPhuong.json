@@ -1,0 +1,27 @@
+{
+  "name": "XaPhuong",
+  "fields": [
+    {
+      "fieldName": "ten",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "huyenQuan",
+      "otherEntityRelationshipName": "xaPhuong",
+      "relationshipName": "huyen"
+    }
+  ],
+  "entityTableName": "xa_phuong",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153941"
+}

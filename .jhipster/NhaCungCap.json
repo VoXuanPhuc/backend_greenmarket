@@ -1,0 +1,39 @@
+{
+  "name": "NhaCungCap",
+  "fields": [
+    {
+      "fieldName": "tenNCC",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "chitietdiachi",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-one",
+      "otherEntityName": "xaPhuong",
+      "otherEntityRelationshipName": "nhaCungCap",
+      "relationshipName": "diaChi",
+      "ownerSide": true
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "nongSan",
+      "otherEntityRelationshipName": "nhacc",
+      "relationshipName": "nongSan"
+    }
+  ],
+  "entityTableName": "nha_cung_cap",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153943"
+}

@@ -1,0 +1,65 @@
+{
+  "name": "HoaDon",
+  "fields": [
+    {
+      "fieldName": "tongthanhtoan",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "chiphivanchuyen",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ngaythanhtoan",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ngaytao",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "trangthai",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "chiTietHoaDon",
+      "otherEntityRelationshipName": "hoadon",
+      "relationshipName": "chiTietHoaDon"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "phuongThucTT",
+      "otherEntityRelationshipName": "hoaDon",
+      "relationshipName": "phuongthucTT"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "hinhThucGiaoHang",
+      "otherEntityRelationshipName": "hoaDon",
+      "relationshipName": "phuongthucGH"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "khachHang",
+      "otherEntityRelationshipName": "hoaDon",
+      "relationshipName": "khachhang"
+    }
+  ],
+  "entityTableName": "hoa_don",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153949"
+}

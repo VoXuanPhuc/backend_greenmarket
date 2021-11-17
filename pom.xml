@@ -608,10 +608,10 @@
                         <changeLogFile>${project.basedir}/src/main/resources/config/liquibase/master.xml</changeLogFile>
                         <diffChangeLogFile>${project.basedir}/src/main/resources/config/liquibase/changelog/${maven.build.timestamp}_changelog.xml</diffChangeLogFile>
                         <driver>org.postgresql.Driver</driver>
-                        <url>jdbc:postgresql://localhost:5432/greenmarket</url>
+                        <url>jdbc:postgres://kzfbutkeplzwip:8e24cddb393d0a298194563f002d291f89dcbce6bd4f00e0a457e9d70bee2e6b@ec2-54-146-82-179.compute-1.amazonaws.com:5432/d8r1jg6ph5853v</url>
                         <defaultSchemaName></defaultSchemaName>
-                        <username>greenmarket</username>
-                        <password></password>
+                        <username>kzfbutkeplzwip</username>
+                        <password>8e24cddb393d0a298194563f002d291f89dcbce6bd4f00e0a457e9d70bee2e6b</password>
                         <referenceUrl>hibernate:spring:com.android.greenmarket.domain?dialect=tech.jhipster.domain.util.FixedPostgreSQL10Dialect&amp;hibernate.physical_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy&amp;hibernate.implicit_naming_strategy=org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy</referenceUrl>
                         <verbose>true</verbose>
                         <logging>debug</logging>

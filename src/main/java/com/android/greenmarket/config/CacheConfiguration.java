@@ -48,6 +48,36 @@ public class CacheConfiguration {
             createCache(cm, com.android.greenmarket.domain.User.class.getName());
             createCache(cm, com.android.greenmarket.domain.Authority.class.getName());
             createCache(cm, com.android.greenmarket.domain.User.class.getName() + ".authorities");
+            createCache(cm, com.android.greenmarket.domain.TinhTP.class.getName());
+            createCache(cm, com.android.greenmarket.domain.TinhTP.class.getName() + ".huyenQuans");
+            createCache(cm, com.android.greenmarket.domain.HuyenQuan.class.getName());
+            createCache(cm, com.android.greenmarket.domain.HuyenQuan.class.getName() + ".xaPhuongs");
+            createCache(cm, com.android.greenmarket.domain.XaPhuong.class.getName());
+            createCache(cm, com.android.greenmarket.domain.KhachHang.class.getName());
+            createCache(cm, com.android.greenmarket.domain.KhachHang.class.getName() + ".yeuThiches");
+            createCache(cm, com.android.greenmarket.domain.KhachHang.class.getName() + ".danhGias");
+            createCache(cm, com.android.greenmarket.domain.KhachHang.class.getName() + ".hoaDons");
+            createCache(cm, com.android.greenmarket.domain.NhaCungCap.class.getName());
+            createCache(cm, com.android.greenmarket.domain.NhaCungCap.class.getName() + ".nongSans");
+            createCache(cm, com.android.greenmarket.domain.DanhMuc.class.getName());
+            createCache(cm, com.android.greenmarket.domain.DanhMuc.class.getName() + ".nongSans");
+            createCache(cm, com.android.greenmarket.domain.NongSan.class.getName());
+            createCache(cm, com.android.greenmarket.domain.NongSan.class.getName() + ".anhNongSans");
+            createCache(cm, com.android.greenmarket.domain.NongSan.class.getName() + ".danhGias");
+            createCache(cm, com.android.greenmarket.domain.NongSan.class.getName() + ".chiTietHoaDons");
+            createCache(cm, com.android.greenmarket.domain.NongSan.class.getName() + ".yeuThiches");
+            createCache(cm, com.android.greenmarket.domain.AnhNongSan.class.getName());
+            createCache(cm, com.android.greenmarket.domain.PhuongThucTT.class.getName());
+            createCache(cm, com.android.greenmarket.domain.PhuongThucTT.class.getName() + ".hoaDons");
+            createCache(cm, com.android.greenmarket.domain.ChiTietHoaDon.class.getName());
+            createCache(cm, com.android.greenmarket.domain.HoaDon.class.getName());
+            createCache(cm, com.android.greenmarket.domain.HoaDon.class.getName() + ".chiTietHoaDons");
+            createCache(cm, com.android.greenmarket.domain.DanhGia.class.getName());
+            createCache(cm, com.android.greenmarket.domain.DanhGia.class.getName() + ".anhDanhGias");
+            createCache(cm, com.android.greenmarket.domain.AnhDanhGia.class.getName());
+            createCache(cm, com.android.greenmarket.domain.HinhThucGiaoHang.class.getName());
+            createCache(cm, com.android.greenmarket.domain.HinhThucGiaoHang.class.getName() + ".hoaDons");
+            createCache(cm, com.android.greenmarket.domain.YeuThich.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

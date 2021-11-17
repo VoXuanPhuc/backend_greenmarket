@@ -1,0 +1,120 @@
+
+
+
+entity TinhTP {
+	ten String
+}
+
+entity HuyenQuan {
+ 	ten String
+}
+
+entity XaPhuong  {
+ 	ten String
+}
+
+entity KhachHang {
+	hoTenKH String,
+    tenDangNhap String unique,
+	matkhau String required,
+	email String required unique,
+	sdt String required unique,
+	ngaySinh Instant required,
+    gioitinh String,
+	chitietdiachi String,
+}
+
+entity NhaCungCap {
+    tenNCC String required,
+    chitietdiachi String
+}
+
+
+entity DanhMuc {
+ 	tenDM String
+}
+
+entity NongSan {
+    tenNS String required,
+    gia Double required,
+	soluongNhap Integer required,
+    soluongCon Integer required,
+    noiSanXuat Instant required,
+    moTaNS Instant required,
+}
+
+entity AnhNongSan {
+	ten String required
+}
+
+entity PhuongThucTT {
+ 	tenPTTT String required
+}
+
+entity ChiTietHoaDon {
+ 	gia Double required,
+    soluong Integer required,
+}
+
+entity HoaDon {
+ 	tongthanhtoan Double required,
+    chiphivanchuyen Double required,
+    ngaythanhtoan Instant required,
+    ngaytao Instant required,
+    trangthai String
+}
+
+entity DanhGia {
+    sao Integer required,
+	chitiet String required,
+    image String required,
+    ngaydanhgia Instant required,
+}
+
+entity AnhDanhGia {
+	ten String required
+}
+
+entity HinhThucGiaoHang {
+	mota String required,
+}
+
+entity YeuThich {
+	
+}
+
+relationship OneToOne {
+	KhachHang{diaChi} to XaPhuong
+    NhaCungCap{diaChi} to XaPhuong
+}
+
+relationship OneToMany {
+	TinhTP to HuyenQuan{tinh},
+    HuyenQuan to XaPhuong{huyen},
+
+    DanhMuc to NongSan{danhmuc}
+    NongSan to AnhNongSan{anhnongsan}
+    NongSan to DanhGia{nongsan}
+    NongSan to ChiTietHoaDon{nongsan}
+	NongSan to YeuThich{nongsan}
+
+    PhuongThucTT to HoaDon{phuongthucTT}
+    HinhThucGiaoHang to HoaDon{phuongthucGH}
+	DanhGia to AnhDanhGia{danhgia}
+    
+    KhachHang to YeuThich{khachhang}
+    KhachHang to DanhGia{khachhang}
+    KhachHang to HoaDon{khachhang}
+    HoaDon to ChiTietHoaDon{hoadon}
+    NhaCungCap to NongSan{nhacc}
+    
+}
+
+// Use Data Transfer Objects (DTO)
+ dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

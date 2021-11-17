@@ -1,0 +1,65 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-nha-cung-cap-heading" data-cy="NhaCungCapCreateUpdateHeading">Create or edit a Nha Cung Cap</h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        <div class="form-group" [hidden]="editForm.get('id')!.value == null">
+          <label class="form-control-label" for="field_id">ID</label>
+          <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_tenNCC">Ten NCC</label>
+          <input type="text" class="form-control" name="tenNCC" id="field_tenNCC" data-cy="tenNCC" formControlName="tenNCC" />
+          <div *ngIf="editForm.get('tenNCC')!.invalid && (editForm.get('tenNCC')!.dirty || editForm.get('tenNCC')!.touched)">
+            <small class="form-text text-danger" *ngIf="editForm.get('tenNCC')?.errors?.required"> This field is required. </small>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_chitietdiachi">Chitietdiachi</label>
+          <input
+            type="text"
+            class="form-control"
+            name="chitietdiachi"
+            id="field_chitietdiachi"
+            data-cy="chitietdiachi"
+            formControlName="chitietdiachi"
+          />
+        </div>
+
+        <div class="form-group">
+          <label class="form-control-label" for="field_diaChi">Dia Chi</label>
+          <select class="form-control" id="field_diaChi" data-cy="diaChi" name="diaChi" formControlName="diaChi">
+            <option [ngValue]="null"></option>
+            <option
+              [ngValue]="xaPhuongOption.id === editForm.get('diaChi')!.value?.id ? editForm.get('diaChi')!.value : xaPhuongOption"
+              *ngFor="let xaPhuongOption of diaChisCollection; trackBy: trackXaPhuongById"
+            >
+              {{ xaPhuongOption.id }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span>Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span>Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

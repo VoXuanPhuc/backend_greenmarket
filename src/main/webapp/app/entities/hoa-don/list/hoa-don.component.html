@@ -1,0 +1,104 @@
+<div>
+  <h2 id="page-heading" data-cy="HoaDonHeading">
+    <span>Hoa Dons</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadAll()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span>Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-hoa-don"
+        [routerLink]="['/hoa-don/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span> Create a new Hoa Don </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="hoaDons?.length === 0">
+    <span>No hoaDons found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="hoaDons && hoaDons.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr>
+          <th scope="col"><span>ID</span></th>
+          <th scope="col"><span>Tongthanhtoan</span></th>
+          <th scope="col"><span>Chiphivanchuyen</span></th>
+          <th scope="col"><span>Ngaythanhtoan</span></th>
+          <th scope="col"><span>Ngaytao</span></th>
+          <th scope="col"><span>Trangthai</span></th>
+          <th scope="col"><span>Phuongthuc TT</span></th>
+          <th scope="col"><span>Phuongthuc GH</span></th>
+          <th scope="col"><span>Khachhang</span></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let hoaDon of hoaDons; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/hoa-don', hoaDon.id, 'view']">{{ hoaDon.id }}</a>
+          </td>
+          <td>{{ hoaDon.tongthanhtoan }}</td>
+          <td>{{ hoaDon.chiphivanchuyen }}</td>
+          <td>{{ hoaDon.ngaythanhtoan | formatMediumDatetime }}</td>
+          <td>{{ hoaDon.ngaytao | formatMediumDatetime }}</td>
+          <td>{{ hoaDon.trangthai }}</td>
+          <td>
+            <div *ngIf="hoaDon.phuongthucTT">
+              <a [routerLink]="['/phuong-thuc-tt', hoaDon.phuongthucTT?.id, 'view']">{{ hoaDon.phuongthucTT?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="hoaDon.phuongthucGH">
+              <a [routerLink]="['/hinh-thuc-giao-hang', hoaDon.phuongthucGH?.id, 'view']">{{ hoaDon.phuongthucGH?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="hoaDon.khachhang">
+              <a [routerLink]="['/khach-hang', hoaDon.khachhang?.id, 'view']">{{ hoaDon.khachhang?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/hoa-don', hoaDon.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/hoa-don', hoaDon.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(hoaDon)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

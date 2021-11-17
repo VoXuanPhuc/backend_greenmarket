@@ -33,9 +33,9 @@ spring:
       enabled: false
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgresql://localhost:5432/greenmarket
-    username: greenmarket
-    password:
+    url: jdbc:postgres://kzfbutkeplzwip:8e24cddb393d0a298194563f002d291f89dcbce6bd4f00e0a457e9d70bee2e6b@ec2-54-146-82-179.compute-1.amazonaws.com:5432/d8r1jg6ph5853v
+    username: kzfbutkeplzwip
+    password: 8e24cddb393d0a298194563f002d291f89dcbce6bd4f00e0a457e9d70bee2e6b
     hikari:
       poolName: Hikari
       auto-commit: false

@@ -1,0 +1,33 @@
+{
+  "name": "HuyenQuan",
+  "fields": [
+    {
+      "fieldName": "ten",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "xaPhuong",
+      "otherEntityRelationshipName": "huyen",
+      "relationshipName": "xaPhuong"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "tinhTP",
+      "otherEntityRelationshipName": "huyenQuan",
+      "relationshipName": "tinh"
+    }
+  ],
+  "entityTableName": "huyen_quan",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153940"
+}

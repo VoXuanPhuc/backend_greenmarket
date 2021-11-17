@@ -1,0 +1,55 @@
+{
+  "name": "DanhGia",
+  "fields": [
+    {
+      "fieldName": "sao",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "chitiet",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "image",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "ngaydanhgia",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "anhDanhGia",
+      "otherEntityRelationshipName": "danhgia",
+      "relationshipName": "anhDanhGia"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "nongSan",
+      "otherEntityRelationshipName": "danhGia",
+      "relationshipName": "nongsan"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "khachHang",
+      "otherEntityRelationshipName": "danhGia",
+      "relationshipName": "khachhang"
+    }
+  ],
+  "entityTableName": "danh_gia",
+  "dto": "mapstruct",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20211117153950"
+}
