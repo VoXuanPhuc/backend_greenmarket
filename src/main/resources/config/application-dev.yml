@@ -32,9 +32,9 @@ spring:
       indent-output: true
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
-    url: jdbc:postgres://wdhldltelbfdif:3a119d2e92f0227783081ad63f2a113bcece715b32a13f095db7e48b6756932d@ec2-3-92-119-83.compute-1.amazonaws.com:5432/d54grobd088o8t
-    username: wdhldltelbfdif
-    password: 3a119d2e92f0227783081ad63f2a113bcece715b32a13f095db7e48b6756932d
+    url: jdbc:postgresql://localhost:5432/greenmarket
+    username: admin
+    password: admin1234
     hikari:
       poolName: Hikari
       auto-commit: false
