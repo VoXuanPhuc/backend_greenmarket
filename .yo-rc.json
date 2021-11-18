@@ -60,6 +60,9 @@
       "HinhThucGiaoHang",
       "YeuThich"
     ],
-    "lastLiquibaseTimestamp": 1637163593000
+    "lastLiquibaseTimestamp": 1637163593000,
+    "herokuAppName": "androidgreenmarketphuc",
+    "herokuDeployType": "jar",
+    "herokuJavaVersion": "14"
   }
 }
