@@ -26,6 +26,9 @@ public class DanhMuc implements Serializable {
     @Column(name = "ten_dm")
     private String tenDM;
 
+    @Column(name = "anh_danh_muc")
+    private String anhDanhMuc;
+
     @OneToMany(mappedBy = "danhmuc")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "anhNongSans", "danhGias", "chiTietHoaDons", "yeuThiches", "danhmuc", "nhacc" }, allowSetters = true)
@@ -56,6 +59,19 @@ public class DanhMuc implements Serializable {
 
     public void setTenDM(String tenDM) {
         this.tenDM = tenDM;
+    }
+
+    public String getAnhDanhMuc() {
+        return this.anhDanhMuc;
+    }
+
+    public DanhMuc anhDanhMuc(String anhDanhMuc) {
+        this.anhDanhMuc = anhDanhMuc;
+        return this;
+    }
+
+    public void setAnhDanhMuc(String anhDanhMuc) {
+        this.anhDanhMuc = anhDanhMuc;
     }
 
     public Set<NongSan> getNongSans() {
@@ -114,6 +130,7 @@ public class DanhMuc implements Serializable {
         return "DanhMuc{" +
             "id=" + getId() +
             ", tenDM='" + getTenDM() + "'" +
+            ", anhDanhMuc='" + getAnhDanhMuc() + "'" +
             "}";
     }
 }

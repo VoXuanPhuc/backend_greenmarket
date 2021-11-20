@@ -5,9 +5,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { finalize, map } from 'rxjs/operators';
 
-import * as dayjs from 'dayjs';
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
-
 import { INongSan, NongSan } from '../nong-san.model';
 import { NongSanService } from '../service/nong-san.service';
 import { IDanhMuc } from 'app/entities/danh-muc/danh-muc.model';
@@ -47,12 +44,6 @@ export class NongSanUpdateComponent implements OnInit {
 
   ngOnInit(): void {
     this.activatedRoute.data.subscribe(({ nongSan }) => {
-      if (nongSan.id === undefined) {
-        const today = dayjs().startOf('day');
-        nongSan.noiSanXuat = today;
-        nongSan.moTaNS = today;
-      }
-
       this.updateForm(nongSan);
 
       this.loadRelationshipsOptions();
@@ -107,8 +98,8 @@ export class NongSanUpdateComponent implements OnInit {
       gia: nongSan.gia,
       soluongNhap: nongSan.soluongNhap,
       soluongCon: nongSan.soluongCon,
-      noiSanXuat: nongSan.noiSanXuat ? nongSan.noiSanXuat.format(DATE_TIME_FORMAT) : null,
-      moTaNS: nongSan.moTaNS ? nongSan.moTaNS.format(DATE_TIME_FORMAT) : null,
+      noiSanXuat: nongSan.noiSanXuat,
+      moTaNS: nongSan.moTaNS,
       danhmuc: nongSan.danhmuc,
       nhacc: nongSan.nhacc,
     });
@@ -148,8 +139,8 @@ export class NongSanUpdateComponent implements OnInit {
       gia: this.editForm.get(['gia'])!.value,
       soluongNhap: this.editForm.get(['soluongNhap'])!.value,
       soluongCon: this.editForm.get(['soluongCon'])!.value,
-      noiSanXuat: this.editForm.get(['noiSanXuat'])!.value ? dayjs(this.editForm.get(['noiSanXuat'])!.value, DATE_TIME_FORMAT) : undefined,
-      moTaNS: this.editForm.get(['moTaNS'])!.value ? dayjs(this.editForm.get(['moTaNS'])!.value, DATE_TIME_FORMAT) : undefined,
+      noiSanXuat: this.editForm.get(['noiSanXuat'])!.value,
+      moTaNS: this.editForm.get(['moTaNS'])!.value,
       danhmuc: this.editForm.get(['danhmuc'])!.value,
       nhacc: this.editForm.get(['nhacc'])!.value,
     };

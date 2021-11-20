@@ -26,10 +26,10 @@
             <column name="soluong_con" type="integer">
                 <constraints nullable="false" />
             </column>
-            <column name="noi_san_xuat" type="${datetimeType}">
+            <column name="noi_san_xuat" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="mo_ta_ns" type="${datetimeType}">
+            <column name="mo_ta_ns" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
             <column name="danhmuc_id" type="bigint">
@@ -40,8 +40,6 @@
             </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-        <dropDefaultValue tableName="nong_san" columnName="noi_san_xuat" columnDataType="${datetimeType}"/>
-        <dropDefaultValue tableName="nong_san" columnName="mo_ta_ns" columnDataType="${datetimeType}"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->
@@ -64,8 +62,8 @@
             <column name="gia" type="numeric"/>
             <column name="soluong_nhap" type="numeric"/>
             <column name="soluong_con" type="numeric"/>
-            <column name="noi_san_xuat" type="${datetimeType}"/>
-            <column name="mo_ta_ns" type="${datetimeType}"/>
+            <column name="noi_san_xuat" type="string"/>
+            <column name="mo_ta_ns" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>

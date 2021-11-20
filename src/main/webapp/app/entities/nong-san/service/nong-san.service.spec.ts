@@ -1,8 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-import * as dayjs from 'dayjs';
 
-import { DATE_TIME_FORMAT } from 'app/config/input.constants';
 import { INongSan, NongSan } from '../nong-san.model';
 
 import { NongSanService } from './nong-san.service';
@@ -13,7 +11,6 @@ describe('Service Tests', () => {
     let httpMock: HttpTestingController;
     let elemDefault: INongSan;
     let expectedResult: INongSan | INongSan[] | boolean | null;
-    let currentDate: dayjs.Dayjs;
 
     beforeEach(() => {
       TestBed.configureTestingModule({
@@ -22,7 +19,6 @@ describe('Service Tests', () => {
       expectedResult = null;
       service = TestBed.inject(NongSanService);
       httpMock = TestBed.inject(HttpTestingController);
-      currentDate = dayjs();
 
       elemDefault = {
         id: 0,
@@ -30,20 +26,14 @@ describe('Service Tests', () => {
         gia: 0,
         soluongNhap: 0,
         soluongCon: 0,
-        noiSanXuat: currentDate,
-        moTaNS: currentDate,
+        noiSanXuat: 'AAAAAAA',
+        moTaNS: 'AAAAAAA',
       };
     });
 
     describe('Service methods', () => {
       it('should find an element', () => {
-        const returnedFromService = Object.assign(
-          {
-            noiSanXuat: currentDate.format(DATE_TIME_FORMAT),
-            moTaNS: currentDate.format(DATE_TIME_FORMAT),
-          },
-          elemDefault
-        );
+        const returnedFromService = Object.assign({}, elemDefault);
 
         service.find(123).subscribe(resp => (expectedResult = resp.body));
 
@@ -56,19 +46,11 @@ describe('Service Tests', () => {
         const returnedFromService = Object.assign(
           {
             id: 0,
-            noiSanXuat: currentDate.format(DATE_TIME_FORMAT),
-            moTaNS: currentDate.format(DATE_TIME_FORMAT),
           },
           elemDefault
         );
 
-        const expected = Object.assign(
-          {
-            noiSanXuat: currentDate,
-            moTaNS: currentDate,
-          },
-          returnedFromService
-        );
+        const expected = Object.assign({}, returnedFromService);
 
         service.create(new NongSan()).subscribe(resp => (expectedResult = resp.body));
 
@@ -85,19 +67,13 @@ describe('Service Tests', () => {
             gia: 1,
             soluongNhap: 1,
             soluongCon: 1,
-            noiSanXuat: currentDate.format(DATE_TIME_FORMAT),
-            moTaNS: currentDate.format(DATE_TIME_FORMAT),
+            noiSanXuat: 'BBBBBB',
+            moTaNS: 'BBBBBB',
           },
           elemDefault
         );
 
-        const expected = Object.assign(
-          {
-            noiSanXuat: currentDate,
-            moTaNS: currentDate,
-          },
-          returnedFromService
-        );
+        const expected = Object.assign({}, returnedFromService);
 
         service.update(expected).subscribe(resp => (expectedResult = resp.body));
 
@@ -117,13 +93,7 @@ describe('Service Tests', () => {
 
         const returnedFromService = Object.assign(patchObject, elemDefault);
 
-        const expected = Object.assign(
-          {
-            noiSanXuat: currentDate,
-            moTaNS: currentDate,
-          },
-          returnedFromService
-        );
+        const expected = Object.assign({}, returnedFromService);
 
         service.partialUpdate(patchObject).subscribe(resp => (expectedResult = resp.body));
 
@@ -140,19 +110,13 @@ describe('Service Tests', () => {
             gia: 1,
             soluongNhap: 1,
             soluongCon: 1,
-            noiSanXuat: currentDate.format(DATE_TIME_FORMAT),
-            moTaNS: currentDate.format(DATE_TIME_FORMAT),
+            noiSanXuat: 'BBBBBB',
+            moTaNS: 'BBBBBB',
           },
           elemDefault
         );
 
-        const expected = Object.assign(
-          {
-            noiSanXuat: currentDate,
-            moTaNS: currentDate,
-          },
-          returnedFromService
-        );
+        const expected = Object.assign({}, returnedFromService);
 
         service.query().subscribe(resp => (expectedResult = resp.body));
 

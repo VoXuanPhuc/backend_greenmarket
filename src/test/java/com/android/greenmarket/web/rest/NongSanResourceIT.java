@@ -10,8 +10,6 @@ import com.android.greenmarket.domain.NongSan;
 import com.android.greenmarket.repository.NongSanRepository;
 import com.android.greenmarket.service.dto.NongSanDTO;
 import com.android.greenmarket.service.mapper.NongSanMapper;
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
@@ -45,11 +43,11 @@ class NongSanResourceIT {
     private static final Integer DEFAULT_SOLUONG_CON = 1;
     private static final Integer UPDATED_SOLUONG_CON = 2;
 
-    private static final Instant DEFAULT_NOI_SAN_XUAT = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_NOI_SAN_XUAT = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final String DEFAULT_NOI_SAN_XUAT = "AAAAAAAAAA";
+    private static final String UPDATED_NOI_SAN_XUAT = "BBBBBBBBBB";
 
-    private static final Instant DEFAULT_MO_TA_NS = Instant.ofEpochMilli(0L);
-    private static final Instant UPDATED_MO_TA_NS = Instant.now().truncatedTo(ChronoUnit.MILLIS);
+    private static final String DEFAULT_MO_TA_NS = "AAAAAAAAAA";
+    private static final String UPDATED_MO_TA_NS = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/nong-sans";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -275,8 +273,8 @@ class NongSanResourceIT {
             .andExpect(jsonPath("$.[*].gia").value(hasItem(DEFAULT_GIA.doubleValue())))
             .andExpect(jsonPath("$.[*].soluongNhap").value(hasItem(DEFAULT_SOLUONG_NHAP)))
             .andExpect(jsonPath("$.[*].soluongCon").value(hasItem(DEFAULT_SOLUONG_CON)))
-            .andExpect(jsonPath("$.[*].noiSanXuat").value(hasItem(DEFAULT_NOI_SAN_XUAT.toString())))
-            .andExpect(jsonPath("$.[*].moTaNS").value(hasItem(DEFAULT_MO_TA_NS.toString())));
+            .andExpect(jsonPath("$.[*].noiSanXuat").value(hasItem(DEFAULT_NOI_SAN_XUAT)))
+            .andExpect(jsonPath("$.[*].moTaNS").value(hasItem(DEFAULT_MO_TA_NS)));
     }
 
     @Test
@@ -295,8 +293,8 @@ class NongSanResourceIT {
             .andExpect(jsonPath("$.gia").value(DEFAULT_GIA.doubleValue()))
             .andExpect(jsonPath("$.soluongNhap").value(DEFAULT_SOLUONG_NHAP))
             .andExpect(jsonPath("$.soluongCon").value(DEFAULT_SOLUONG_CON))
-            .andExpect(jsonPath("$.noiSanXuat").value(DEFAULT_NOI_SAN_XUAT.toString()))
-            .andExpect(jsonPath("$.moTaNS").value(DEFAULT_MO_TA_NS.toString()));
+            .andExpect(jsonPath("$.noiSanXuat").value(DEFAULT_NOI_SAN_XUAT))
+            .andExpect(jsonPath("$.moTaNS").value(DEFAULT_MO_TA_NS));
     }
 
     @Test

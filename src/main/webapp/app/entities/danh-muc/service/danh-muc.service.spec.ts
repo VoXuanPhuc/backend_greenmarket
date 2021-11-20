@@ -23,6 +23,7 @@ describe('Service Tests', () => {
       elemDefault = {
         id: 0,
         tenDM: 'AAAAAAA',
+        anhDanhMuc: 'AAAAAAA',
       };
     });
 
@@ -59,6 +60,7 @@ describe('Service Tests', () => {
           {
             id: 1,
             tenDM: 'BBBBBB',
+            anhDanhMuc: 'BBBBBB',
           },
           elemDefault
         );
@@ -76,6 +78,7 @@ describe('Service Tests', () => {
         const patchObject = Object.assign(
           {
             tenDM: 'BBBBBB',
+            anhDanhMuc: 'BBBBBB',
           },
           new DanhMuc()
         );
@@ -96,6 +99,7 @@ describe('Service Tests', () => {
           {
             id: 1,
             tenDM: 'BBBBBB',
+            anhDanhMuc: 'BBBBBB',
           },
           elemDefault
         );
@@ -147,7 +151,7 @@ describe('Service Tests', () => {
         });
 
         it('should add only unique DanhMuc to an array', () => {
-          const danhMucArray: IDanhMuc[] = [{ id: 123 }, { id: 456 }, { id: 93088 }];
+          const danhMucArray: IDanhMuc[] = [{ id: 123 }, { id: 456 }, { id: 56110 }];
           const danhMucCollection: IDanhMuc[] = [{ id: 123 }];
           expectedResult = service.addDanhMucToCollectionIfMissing(danhMucCollection, ...danhMucArray);
           expect(expectedResult).toHaveLength(3);

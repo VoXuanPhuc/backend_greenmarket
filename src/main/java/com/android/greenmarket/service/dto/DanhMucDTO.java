@@ -12,6 +12,8 @@ public class DanhMucDTO implements Serializable {
 
     private String tenDM;
 
+    private String anhDanhMuc;
+
     public Long getId() {
         return id;
     }
@@ -26,6 +28,14 @@ public class DanhMucDTO implements Serializable {
 
     public void setTenDM(String tenDM) {
         this.tenDM = tenDM;
+    }
+
+    public String getAnhDanhMuc() {
+        return anhDanhMuc;
+    }
+
+    public void setAnhDanhMuc(String anhDanhMuc) {
+        this.anhDanhMuc = anhDanhMuc;
     }
 
     @Override
@@ -55,6 +65,7 @@ public class DanhMucDTO implements Serializable {
         return "DanhMucDTO{" +
             "id=" + getId() +
             ", tenDM='" + getTenDM() + "'" +
+            ", anhDanhMuc='" + getAnhDanhMuc() + "'" +
             "}";
     }
 }

@@ -18,6 +18,7 @@ export class DanhMucUpdateComponent implements OnInit {
   editForm = this.fb.group({
     id: [],
     tenDM: [],
+    anhDanhMuc: [],
   });
 
   constructor(protected danhMucService: DanhMucService, protected activatedRoute: ActivatedRoute, protected fb: FormBuilder) {}
@@ -65,6 +66,7 @@ export class DanhMucUpdateComponent implements OnInit {
     this.editForm.patchValue({
       id: danhMuc.id,
       tenDM: danhMuc.tenDM,
+      anhDanhMuc: danhMuc.anhDanhMuc,
     });
   }
 
@@ -73,6 +75,7 @@ export class DanhMucUpdateComponent implements OnInit {
       ...new DanhMuc(),
       id: this.editForm.get(['id'])!.value,
       tenDM: this.editForm.get(['tenDM'])!.value,
+      anhDanhMuc: this.editForm.get(['anhDanhMuc'])!.value,
     };
   }
 }

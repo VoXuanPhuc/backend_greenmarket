@@ -23,12 +23,12 @@
     },
     {
       "fieldName": "noiSanXuat",
-      "fieldType": "Instant",
+      "fieldType": "String",
       "fieldValidateRules": ["required"]
     },
     {
       "fieldName": "moTaNS",
-      "fieldType": "Instant",
+      "fieldType": "String",
       "fieldValidateRules": ["required"]
     }
   ],

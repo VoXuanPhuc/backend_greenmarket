@@ -4,6 +4,10 @@
     {
       "fieldName": "tenDM",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "anhDanhMuc",
+      "fieldType": "String"
     }
   ],
   "relationships": [

@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import * as dayjs from 'dayjs';
 
 import { isPresent } from 'app/core/util/operators';
 import { ApplicationConfigService } from 'app/core/config/application-config.service';
@@ -19,37 +17,24 @@ export class NongSanService {
   constructor(protected http: HttpClient, protected applicationConfigService: ApplicationConfigService) {}
 
   create(nongSan: INongSan): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(nongSan);
-    return this.http
-      .post<INongSan>(this.resourceUrl, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    return this.http.post<INongSan>(this.resourceUrl, nongSan, { observe: 'response' });
   }
 
   update(nongSan: INongSan): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(nongSan);
-    return this.http
-      .put<INongSan>(`${this.resourceUrl}/${getNongSanIdentifier(nongSan) as number}`, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    return this.http.put<INongSan>(`${this.resourceUrl}/${getNongSanIdentifier(nongSan) as number}`, nongSan, { observe: 'response' });
   }
 
   partialUpdate(nongSan: INongSan): Observable<EntityResponseType> {
-    const copy = this.convertDateFromClient(nongSan);
-    return this.http
-      .patch<INongSan>(`${this.resourceUrl}/${getNongSanIdentifier(nongSan) as number}`, copy, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    return this.http.patch<INongSan>(`${this.resourceUrl}/${getNongSanIdentifier(nongSan) as number}`, nongSan, { observe: 'response' });
   }
 
   find(id: number): Observable<EntityResponseType> {
-    return this.http
-      .get<INongSan>(`${this.resourceUrl}/${id}`, { observe: 'response' })
-      .pipe(map((res: EntityResponseType) => this.convertDateFromServer(res)));
+    return this.http.get<INongSan>(`${this.resourceUrl}/${id}`, { observe: 'response' });
   }
 
   query(req?: any): Observable<EntityArrayResponseType> {
     const options = createRequestOption(req);
-    return this.http
-      .get<INongSan[]>(this.resourceUrl, { params: options, observe: 'response' })
-      .pipe(map((res: EntityArrayResponseType) => this.convertDateArrayFromServer(res)));
+    return this.http.get<INongSan[]>(this.resourceUrl, { params: options, observe: 'response' });
   }
 
   delete(id: number): Observable<HttpResponse<{}>> {
@@ -71,30 +56,5 @@ export class NongSanService {
       return [...nongSansToAdd, ...nongSanCollection];
     }
     return nongSanCollection;
-  }
-
-  protected convertDateFromClient(nongSan: INongSan): INongSan {
-    return Object.assign({}, nongSan, {
-      noiSanXuat: nongSan.noiSanXuat?.isValid() ? nongSan.noiSanXuat.toJSON() : undefined,
-      moTaNS: nongSan.moTaNS?.isValid() ? nongSan.moTaNS.toJSON() : undefined,
-    });
-  }
-
-  protected convertDateFromServer(res: EntityResponseType): EntityResponseType {
-    if (res.body) {
-      res.body.noiSanXuat = res.body.noiSanXuat ? dayjs(res.body.noiSanXuat) : undefined;
-      res.body.moTaNS = res.body.moTaNS ? dayjs(res.body.moTaNS) : undefined;
-    }
-    return res;
-  }
-
-  protected convertDateArrayFromServer(res: EntityArrayResponseType): EntityArrayResponseType {
-    if (res.body) {
-      res.body.forEach((nongSan: INongSan) => {
-        nongSan.noiSanXuat = nongSan.noiSanXuat ? dayjs(nongSan.noiSanXuat) : undefined;
-        nongSan.moTaNS = nongSan.moTaNS ? dayjs(nongSan.moTaNS) : undefined;
-      });
-    }
-    return res;
   }
 }

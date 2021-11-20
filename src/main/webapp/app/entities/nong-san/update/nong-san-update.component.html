@@ -66,43 +66,24 @@
 
         <div class="form-group">
           <label class="form-control-label" for="field_noiSanXuat">Noi San Xuat</label>
-          <div class="d-flex">
-            <input
-              id="field_noiSanXuat"
-              data-cy="noiSanXuat"
-              type="datetime-local"
-              class="form-control"
-              name="noiSanXuat"
-              formControlName="noiSanXuat"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
+          <input
+            type="text"
+            class="form-control"
+            name="noiSanXuat"
+            id="field_noiSanXuat"
+            data-cy="noiSanXuat"
+            formControlName="noiSanXuat"
+          />
           <div *ngIf="editForm.get('noiSanXuat')!.invalid && (editForm.get('noiSanXuat')!.dirty || editForm.get('noiSanXuat')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('noiSanXuat')?.errors?.required"> This field is required. </small>
-            <small class="form-text text-danger" [hidden]="!editForm.get('noiSanXuat')?.errors?.ZonedDateTimelocal">
-              This field should be a date and time.
-            </small>
           </div>
         </div>
 
         <div class="form-group">
           <label class="form-control-label" for="field_moTaNS">Mo Ta NS</label>
-          <div class="d-flex">
-            <input
-              id="field_moTaNS"
-              data-cy="moTaNS"
-              type="datetime-local"
-              class="form-control"
-              name="moTaNS"
-              formControlName="moTaNS"
-              placeholder="YYYY-MM-DD HH:mm"
-            />
-          </div>
+          <input type="text" class="form-control" name="moTaNS" id="field_moTaNS" data-cy="moTaNS" formControlName="moTaNS" />
           <div *ngIf="editForm.get('moTaNS')!.invalid && (editForm.get('moTaNS')!.dirty || editForm.get('moTaNS')!.touched)">
             <small class="form-text text-danger" *ngIf="editForm.get('moTaNS')?.errors?.required"> This field is required. </small>
-            <small class="form-text text-danger" [hidden]="!editForm.get('moTaNS')?.errors?.ZonedDateTimelocal">
-              This field should be a date and time.
-            </small>
           </div>
         </div>
 

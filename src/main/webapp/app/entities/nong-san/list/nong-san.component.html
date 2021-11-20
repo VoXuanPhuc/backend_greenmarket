@@ -53,8 +53,8 @@
           <td>{{ nongSan.gia }}</td>
           <td>{{ nongSan.soluongNhap }}</td>
           <td>{{ nongSan.soluongCon }}</td>
-          <td>{{ nongSan.noiSanXuat | formatMediumDatetime }}</td>
-          <td>{{ nongSan.moTaNS | formatMediumDatetime }}</td>
+          <td>{{ nongSan.noiSanXuat }}</td>
+          <td>{{ nongSan.moTaNS }}</td>
           <td>
             <div *ngIf="nongSan.danhmuc">
               <a [routerLink]="['/danh-muc', nongSan.danhmuc?.id, 'view']">{{ nongSan.danhmuc?.id }}</a>

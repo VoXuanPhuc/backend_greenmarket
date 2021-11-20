@@ -34,6 +34,7 @@
         <tr>
           <th scope="col"><span>ID</span></th>
           <th scope="col"><span>Ten DM</span></th>
+          <th scope="col"><span>Anh Danh Muc</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -43,6 +44,7 @@
             <a [routerLink]="['/danh-muc', danhMuc.id, 'view']">{{ danhMuc.id }}</a>
           </td>
           <td>{{ danhMuc.tenDM }}</td>
+          <td>{{ danhMuc.anhDanhMuc }}</td>
           <td class="text-right">
             <div class="btn-group">
               <button

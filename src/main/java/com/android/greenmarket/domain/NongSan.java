@@ -2,7 +2,6 @@ package com.android.greenmarket.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.*;
@@ -43,11 +42,11 @@ public class NongSan implements Serializable {
 
     @NotNull
     @Column(name = "noi_san_xuat", nullable = false)
-    private Instant noiSanXuat;
+    private String noiSanXuat;
 
     @NotNull
     @Column(name = "mo_ta_ns", nullable = false)
-    private Instant moTaNS;
+    private String moTaNS;
 
     @OneToMany(mappedBy = "anhnongsan")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
@@ -143,29 +142,29 @@ public class NongSan implements Serializable {
         this.soluongCon = soluongCon;
     }
 
-    public Instant getNoiSanXuat() {
+    public String getNoiSanXuat() {
         return this.noiSanXuat;
     }
 
-    public NongSan noiSanXuat(Instant noiSanXuat) {
+    public NongSan noiSanXuat(String noiSanXuat) {
         this.noiSanXuat = noiSanXuat;
         return this;
     }
 
-    public void setNoiSanXuat(Instant noiSanXuat) {
+    public void setNoiSanXuat(String noiSanXuat) {
         this.noiSanXuat = noiSanXuat;
     }
 
-    public Instant getMoTaNS() {
+    public String getMoTaNS() {
         return this.moTaNS;
     }
 
-    public NongSan moTaNS(Instant moTaNS) {
+    public NongSan moTaNS(String moTaNS) {
         this.moTaNS = moTaNS;
         return this;
     }
 
-    public void setMoTaNS(Instant moTaNS) {
+    public void setMoTaNS(String moTaNS) {
         this.moTaNS = moTaNS;
     }
 

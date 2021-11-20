@@ -1,7 +1,6 @@
 package com.android.greenmarket.service.dto;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.util.Objects;
 import javax.validation.constraints.*;
 
@@ -25,10 +24,10 @@ public class NongSanDTO implements Serializable {
     private Integer soluongCon;
 
     @NotNull
-    private Instant noiSanXuat;
+    private String noiSanXuat;
 
     @NotNull
-    private Instant moTaNS;
+    private String moTaNS;
 
     private DanhMucDTO danhmuc;
 
@@ -74,19 +73,19 @@ public class NongSanDTO implements Serializable {
         this.soluongCon = soluongCon;
     }
 
-    public Instant getNoiSanXuat() {
+    public String getNoiSanXuat() {
         return noiSanXuat;
     }
 
-    public void setNoiSanXuat(Instant noiSanXuat) {
+    public void setNoiSanXuat(String noiSanXuat) {
         this.noiSanXuat = noiSanXuat;
     }
 
-    public Instant getMoTaNS() {
+    public String getMoTaNS() {
         return moTaNS;
     }
 
-    public void setMoTaNS(Instant moTaNS) {
+    public void setMoTaNS(String moTaNS) {
         this.moTaNS = moTaNS;
     }
 

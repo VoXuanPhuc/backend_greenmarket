@@ -31,7 +31,8 @@ entity NhaCungCap {
 
 
 entity DanhMuc {
- 	tenDM String
+ 	tenDM String,
+	anhDanhMuc String
 }
 
 entity NongSan {
@@ -39,8 +40,8 @@ entity NongSan {
     gia Double required,
 	soluongNhap Integer required,
     soluongCon Integer required,
-    noiSanXuat Instant required,
-    moTaNS Instant required,
+    noiSanXuat String required,
+    moTaNS String required,
 }
 
 entity AnhNongSan {

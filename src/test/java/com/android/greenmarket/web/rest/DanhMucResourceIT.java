@@ -34,6 +34,9 @@ class DanhMucResourceIT {
     private static final String DEFAULT_TEN_DM = "AAAAAAAAAA";
     private static final String UPDATED_TEN_DM = "BBBBBBBBBB";
 
+    private static final String DEFAULT_ANH_DANH_MUC = "AAAAAAAAAA";
+    private static final String UPDATED_ANH_DANH_MUC = "BBBBBBBBBB";
+
     private static final String ENTITY_API_URL = "/api/danh-mucs";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -61,7 +64,7 @@ class DanhMucResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static DanhMuc createEntity(EntityManager em) {
-        DanhMuc danhMuc = new DanhMuc().tenDM(DEFAULT_TEN_DM);
+        DanhMuc danhMuc = new DanhMuc().tenDM(DEFAULT_TEN_DM).anhDanhMuc(DEFAULT_ANH_DANH_MUC);
         return danhMuc;
     }
 
@@ -72,7 +75,7 @@ class DanhMucResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static DanhMuc createUpdatedEntity(EntityManager em) {
-        DanhMuc danhMuc = new DanhMuc().tenDM(UPDATED_TEN_DM);
+        DanhMuc danhMuc = new DanhMuc().tenDM(UPDATED_TEN_DM).anhDanhMuc(UPDATED_ANH_DANH_MUC);
         return danhMuc;
     }
 
@@ -96,6 +99,7 @@ class DanhMucResourceIT {
         assertThat(danhMucList).hasSize(databaseSizeBeforeCreate + 1);
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getTenDM()).isEqualTo(DEFAULT_TEN_DM);
+        assertThat(testDanhMuc.getAnhDanhMuc()).isEqualTo(DEFAULT_ANH_DANH_MUC);
     }
 
     @Test
@@ -129,7 +133,8 @@ class DanhMucResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(danhMuc.getId().intValue())))
-            .andExpect(jsonPath("$.[*].tenDM").value(hasItem(DEFAULT_TEN_DM)));
+            .andExpect(jsonPath("$.[*].tenDM").value(hasItem(DEFAULT_TEN_DM)))
+            .andExpect(jsonPath("$.[*].anhDanhMuc").value(hasItem(DEFAULT_ANH_DANH_MUC)));
     }
 
     @Test
@@ -144,7 +149,8 @@ class DanhMucResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(danhMuc.getId().intValue()))
-            .andExpect(jsonPath("$.tenDM").value(DEFAULT_TEN_DM));
+            .andExpect(jsonPath("$.tenDM").value(DEFAULT_TEN_DM))
+            .andExpect(jsonPath("$.anhDanhMuc").value(DEFAULT_ANH_DANH_MUC));
     }
 
     @Test
@@ -166,7 +172,7 @@ class DanhMucResourceIT {
         DanhMuc updatedDanhMuc = danhMucRepository.findById(danhMuc.getId()).get();
         // Disconnect from session so that the updates on updatedDanhMuc are not directly saved in db
         em.detach(updatedDanhMuc);
-        updatedDanhMuc.tenDM(UPDATED_TEN_DM);
+        updatedDanhMuc.tenDM(UPDATED_TEN_DM).anhDanhMuc(UPDATED_ANH_DANH_MUC);
         DanhMucDTO danhMucDTO = danhMucMapper.toDto(updatedDanhMuc);
 
         restDanhMucMockMvc
@@ -182,6 +188,7 @@ class DanhMucResourceIT {
         assertThat(danhMucList).hasSize(databaseSizeBeforeUpdate);
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getTenDM()).isEqualTo(UPDATED_TEN_DM);
+        assertThat(testDanhMuc.getAnhDanhMuc()).isEqualTo(UPDATED_ANH_DANH_MUC);
     }
 
     @Test
@@ -261,6 +268,8 @@ class DanhMucResourceIT {
         DanhMuc partialUpdatedDanhMuc = new DanhMuc();
         partialUpdatedDanhMuc.setId(danhMuc.getId());
 
+        partialUpdatedDanhMuc.anhDanhMuc(UPDATED_ANH_DANH_MUC);
+
         restDanhMucMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedDanhMuc.getId())
@@ -274,6 +283,7 @@ class DanhMucResourceIT {
         assertThat(danhMucList).hasSize(databaseSizeBeforeUpdate);
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getTenDM()).isEqualTo(DEFAULT_TEN_DM);
+        assertThat(testDanhMuc.getAnhDanhMuc()).isEqualTo(UPDATED_ANH_DANH_MUC);
     }
 
     @Test
@@ -288,7 +298,7 @@ class DanhMucResourceIT {
         DanhMuc partialUpdatedDanhMuc = new DanhMuc();
         partialUpdatedDanhMuc.setId(danhMuc.getId());
 
-        partialUpdatedDanhMuc.tenDM(UPDATED_TEN_DM);
+        partialUpdatedDanhMuc.tenDM(UPDATED_TEN_DM).anhDanhMuc(UPDATED_ANH_DANH_MUC);
 
         restDanhMucMockMvc
             .perform(
@@ -303,6 +313,7 @@ class DanhMucResourceIT {
         assertThat(danhMucList).hasSize(databaseSizeBeforeUpdate);
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getTenDM()).isEqualTo(UPDATED_TEN_DM);
+        assertThat(testDanhMuc.getAnhDanhMuc()).isEqualTo(UPDATED_ANH_DANH_MUC);
     }
 
     @Test

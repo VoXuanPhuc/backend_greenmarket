@@ -1,4 +1,3 @@
-import * as dayjs from 'dayjs';
 import { IAnhNongSan } from 'app/entities/anh-nong-san/anh-nong-san.model';
 import { IDanhGia } from 'app/entities/danh-gia/danh-gia.model';
 import { IChiTietHoaDon } from 'app/entities/chi-tiet-hoa-don/chi-tiet-hoa-don.model';
@@ -12,8 +11,8 @@ export interface INongSan {
   gia?: number;
   soluongNhap?: number;
   soluongCon?: number;
-  noiSanXuat?: dayjs.Dayjs;
-  moTaNS?: dayjs.Dayjs;
+  noiSanXuat?: string;
+  moTaNS?: string;
   anhNongSans?: IAnhNongSan[] | null;
   danhGias?: IDanhGia[] | null;
   chiTietHoaDons?: IChiTietHoaDon[] | null;
@@ -29,8 +28,8 @@ export class NongSan implements INongSan {
     public gia?: number,
     public soluongNhap?: number,
     public soluongCon?: number,
-    public noiSanXuat?: dayjs.Dayjs,
-    public moTaNS?: dayjs.Dayjs,
+    public noiSanXuat?: string,
+    public moTaNS?: string,
     public anhNongSans?: IAnhNongSan[] | null,
     public danhGias?: IDanhGia[] | null,
     public chiTietHoaDons?: IChiTietHoaDon[] | null,

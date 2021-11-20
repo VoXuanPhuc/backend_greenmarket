@@ -17,6 +17,9 @@
             <column name="ten_dm" type="varchar(255)">
                 <constraints nullable="true" />
             </column>
+            <column name="anh_danh_muc" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
     </changeSet>
@@ -38,6 +41,7 @@
                   tableName="danh_muc">
             <column name="id" type="numeric"/>
             <column name="ten_dm" type="string"/>
+            <column name="anh_danh_muc" type="string"/>
             <!-- jhipster-needle-liquibase-add-loadcolumn - JHipster (and/or extensions) can add load columns here -->
         </loadData>
     </changeSet>
