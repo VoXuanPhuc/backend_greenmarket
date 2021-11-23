@@ -41,13 +41,6 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "xaPhuong",
-      "otherEntityRelationshipName": "khachHang",
-      "relationshipName": "diaChi",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "yeuThich",
       "otherEntityRelationshipName": "khachhang",
@@ -64,6 +57,12 @@
       "otherEntityName": "hoaDon",
       "otherEntityRelationshipName": "khachhang",
       "relationshipName": "hoaDon"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "xaPhuong",
+      "otherEntityRelationshipName": "khachHang",
+      "relationshipName": "xa"
     }
   ],
   "entityTableName": "khach_hang",

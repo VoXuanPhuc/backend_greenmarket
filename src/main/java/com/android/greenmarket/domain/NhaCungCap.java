@@ -31,15 +31,14 @@ public class NhaCungCap implements Serializable {
     @Column(name = "chitietdiachi")
     private String chitietdiachi;
 
-    @JsonIgnoreProperties(value = { "huyen" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private XaPhuong diaChi;
-
     @OneToMany(mappedBy = "nhacc")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "anhNongSans", "danhGias", "chiTietHoaDons", "yeuThiches", "danhmuc", "nhacc" }, allowSetters = true)
     private Set<NongSan> nongSans = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "khachHangs", "nhaCungCaps", "huyen" }, allowSetters = true)
+    private XaPhuong xa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -81,19 +80,6 @@ public class NhaCungCap implements Serializable {
         this.chitietdiachi = chitietdiachi;
     }
 
-    public XaPhuong getDiaChi() {
-        return this.diaChi;
-    }
-
-    public NhaCungCap diaChi(XaPhuong xaPhuong) {
-        this.setDiaChi(xaPhuong);
-        return this;
-    }
-
-    public void setDiaChi(XaPhuong xaPhuong) {
-        this.diaChi = xaPhuong;
-    }
-
     public Set<NongSan> getNongSans() {
         return this.nongSans;
     }
@@ -123,6 +109,19 @@ public class NhaCungCap implements Serializable {
             nongSans.forEach(i -> i.setNhacc(this));
         }
         this.nongSans = nongSans;
+    }
+
+    public XaPhuong getXa() {
+        return this.xa;
+    }
+
+    public NhaCungCap xa(XaPhuong xaPhuong) {
+        this.setXa(xaPhuong);
+        return this;
+    }
+
+    public void setXa(XaPhuong xaPhuong) {
+        this.xa = xaPhuong;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

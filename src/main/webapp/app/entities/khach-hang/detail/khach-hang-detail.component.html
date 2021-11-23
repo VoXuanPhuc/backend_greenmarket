@@ -46,10 +46,10 @@
         <dd>
           <span>{{ khachHang.chitietdiachi }}</span>
         </dd>
-        <dt><span>Dia Chi</span></dt>
+        <dt><span>Xa</span></dt>
         <dd>
-          <div *ngIf="khachHang.diaChi">
-            <a [routerLink]="['/xa-phuong', khachHang.diaChi?.id, 'view']">{{ khachHang.diaChi?.id }}</a>
+          <div *ngIf="khachHang.xa">
+            <a [routerLink]="['/xa-phuong', khachHang.xa?.id, 'view']">{{ khachHang.xa?.id }}</a>
           </div>
         </dd>
       </dl>

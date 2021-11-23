@@ -84,14 +84,11 @@ entity YeuThich {
 	
 }
 
-relationship OneToOne {
-	KhachHang{diaChi} to XaPhuong
-    NhaCungCap{diaChi} to XaPhuong
-}
-
 relationship OneToMany {
-	TinhTP to HuyenQuan{tinh},
-    HuyenQuan to XaPhuong{huyen},
+	TinhTP to HuyenQuan{tinh}
+    HuyenQuan to XaPhuong{huyen}
+    XaPhuong to KhachHang{xa}
+    XaPhuong to NhaCungCap{xa}
 
     DanhMuc to NongSan{danhmuc}
     NongSan to AnhNongSan{anhnongsan}

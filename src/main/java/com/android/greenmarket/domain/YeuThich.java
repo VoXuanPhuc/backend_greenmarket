@@ -26,7 +26,7 @@ public class YeuThich implements Serializable {
     private NongSan nongsan;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "diaChi", "yeuThiches", "danhGias", "hoaDons" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "yeuThiches", "danhGias", "hoaDons", "xa" }, allowSetters = true)
     private KhachHang khachhang;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

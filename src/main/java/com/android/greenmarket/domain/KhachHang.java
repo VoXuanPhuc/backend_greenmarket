@@ -53,11 +53,6 @@ public class KhachHang implements Serializable {
     @Column(name = "chitietdiachi")
     private String chitietdiachi;
 
-    @JsonIgnoreProperties(value = { "huyen" }, allowSetters = true)
-    @OneToOne
-    @JoinColumn(unique = true)
-    private XaPhuong diaChi;
-
     @OneToMany(mappedBy = "khachhang")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "nongsan", "khachhang" }, allowSetters = true)
@@ -72,6 +67,10 @@ public class KhachHang implements Serializable {
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
     @JsonIgnoreProperties(value = { "chiTietHoaDons", "phuongthucTT", "phuongthucGH", "khachhang" }, allowSetters = true)
     private Set<HoaDon> hoaDons = new HashSet<>();
+
+    @ManyToOne
+    @JsonIgnoreProperties(value = { "khachHangs", "nhaCungCaps", "huyen" }, allowSetters = true)
+    private XaPhuong xa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
     public Long getId() {
@@ -191,19 +190,6 @@ public class KhachHang implements Serializable {
         this.chitietdiachi = chitietdiachi;
     }
 
-    public XaPhuong getDiaChi() {
-        return this.diaChi;
-    }
-
-    public KhachHang diaChi(XaPhuong xaPhuong) {
-        this.setDiaChi(xaPhuong);
-        return this;
-    }
-
-    public void setDiaChi(XaPhuong xaPhuong) {
-        this.diaChi = xaPhuong;
-    }
-
     public Set<YeuThich> getYeuThiches() {
         return this.yeuThiches;
     }
@@ -295,6 +281,19 @@ public class KhachHang implements Serializable {
             hoaDons.forEach(i -> i.setKhachhang(this));
         }
         this.hoaDons = hoaDons;
+    }
+
+    public XaPhuong getXa() {
+        return this.xa;
+    }
+
+    public KhachHang xa(XaPhuong xaPhuong) {
+        this.setXa(xaPhuong);
+        return this;
+    }
+
+    public void setXa(XaPhuong xaPhuong) {
+        this.xa = xaPhuong;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

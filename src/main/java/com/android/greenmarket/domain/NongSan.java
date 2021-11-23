@@ -73,7 +73,7 @@ public class NongSan implements Serializable {
     private DanhMuc danhmuc;
 
     @ManyToOne
-    @JsonIgnoreProperties(value = { "diaChi", "nongSans" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "nongSans", "xa" }, allowSetters = true)
     private NhaCungCap nhacc;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

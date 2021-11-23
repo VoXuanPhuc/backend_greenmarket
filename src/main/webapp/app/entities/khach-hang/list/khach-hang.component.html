@@ -41,7 +41,7 @@
           <th scope="col"><span>Ngay Sinh</span></th>
           <th scope="col"><span>Gioitinh</span></th>
           <th scope="col"><span>Chitietdiachi</span></th>
-          <th scope="col"><span>Dia Chi</span></th>
+          <th scope="col"><span>Xa</span></th>
           <th scope="col"></th>
         </tr>
       </thead>
@@ -59,8 +59,8 @@
           <td>{{ khachHang.gioitinh }}</td>
           <td>{{ khachHang.chitietdiachi }}</td>
           <td>
-            <div *ngIf="khachHang.diaChi">
-              <a [routerLink]="['/xa-phuong', khachHang.diaChi?.id, 'view']">{{ khachHang.diaChi?.id }}</a>
+            <div *ngIf="khachHang.xa">
+              <a [routerLink]="['/xa-phuong', khachHang.xa?.id, 'view']">{{ khachHang.xa?.id }}</a>
             </div>
           </td>
           <td class="text-right">

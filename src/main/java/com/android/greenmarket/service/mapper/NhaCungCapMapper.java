@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { XaPhuongMapper.class })
 public interface NhaCungCapMapper extends EntityMapper<NhaCungCapDTO, NhaCungCap> {
-    @Mapping(target = "diaChi", source = "diaChi", qualifiedByName = "id")
+    @Mapping(target = "xa", source = "xa", qualifiedByName = "id")
     NhaCungCapDTO toDto(NhaCungCap s);
 
     @Named("id")

@@ -17,13 +17,13 @@ import { XaPhuongService } from 'app/entities/xa-phuong/service/xa-phuong.servic
 export class NhaCungCapUpdateComponent implements OnInit {
   isSaving = false;
 
-  diaChisCollection: IXaPhuong[] = [];
+  xaPhuongsSharedCollection: IXaPhuong[] = [];
 
   editForm = this.fb.group({
     id: [],
     tenNCC: [null, [Validators.required]],
     chitietdiachi: [],
-    diaChi: [],
+    xa: [],
   });
 
   constructor(
@@ -83,22 +83,20 @@ export class NhaCungCapUpdateComponent implements OnInit {
       id: nhaCungCap.id,
       tenNCC: nhaCungCap.tenNCC,
       chitietdiachi: nhaCungCap.chitietdiachi,
-      diaChi: nhaCungCap.diaChi,
+      xa: nhaCungCap.xa,
     });
 
-    this.diaChisCollection = this.xaPhuongService.addXaPhuongToCollectionIfMissing(this.diaChisCollection, nhaCungCap.diaChi);
+    this.xaPhuongsSharedCollection = this.xaPhuongService.addXaPhuongToCollectionIfMissing(this.xaPhuongsSharedCollection, nhaCungCap.xa);
   }
 
   protected loadRelationshipsOptions(): void {
     this.xaPhuongService
-      .query({ filter: 'nhacungcap-is-null' })
+      .query()
       .pipe(map((res: HttpResponse<IXaPhuong[]>) => res.body ?? []))
       .pipe(
-        map((xaPhuongs: IXaPhuong[]) =>
-          this.xaPhuongService.addXaPhuongToCollectionIfMissing(xaPhuongs, this.editForm.get('diaChi')!.value)
-        )
+        map((xaPhuongs: IXaPhuong[]) => this.xaPhuongService.addXaPhuongToCollectionIfMissing(xaPhuongs, this.editForm.get('xa')!.value))
       )
-      .subscribe((xaPhuongs: IXaPhuong[]) => (this.diaChisCollection = xaPhuongs));
+      .subscribe((xaPhuongs: IXaPhuong[]) => (this.xaPhuongsSharedCollection = xaPhuongs));
   }
 
   protected createFromForm(): INhaCungCap {
@@ -107,7 +105,7 @@ export class NhaCungCapUpdateComponent implements OnInit {
       id: this.editForm.get(['id'])!.value,
       tenNCC: this.editForm.get(['tenNCC'])!.value,
       chitietdiachi: this.editForm.get(['chitietdiachi'])!.value,
-      diaChi: this.editForm.get(['diaChi'])!.value,
+      xa: this.editForm.get(['xa'])!.value,
     };
   }
 }

@@ -16,7 +16,7 @@ public class NhaCungCapDTO implements Serializable {
 
     private String chitietdiachi;
 
-    private XaPhuongDTO diaChi;
+    private XaPhuongDTO xa;
 
     public Long getId() {
         return id;
@@ -42,12 +42,12 @@ public class NhaCungCapDTO implements Serializable {
         this.chitietdiachi = chitietdiachi;
     }
 
-    public XaPhuongDTO getDiaChi() {
-        return diaChi;
+    public XaPhuongDTO getXa() {
+        return xa;
     }
 
-    public void setDiaChi(XaPhuongDTO diaChi) {
-        this.diaChi = diaChi;
+    public void setXa(XaPhuongDTO xa) {
+        this.xa = xa;
     }
 
     @Override
@@ -78,7 +78,7 @@ public class NhaCungCapDTO implements Serializable {
             "id=" + getId() +
             ", tenNCC='" + getTenNCC() + "'" +
             ", chitietdiachi='" + getChitietdiachi() + "'" +
-            ", diaChi=" + getDiaChi() +
+            ", xa=" + getXa() +
             "}";
     }
 }

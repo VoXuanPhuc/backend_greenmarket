@@ -9,7 +9,7 @@ import org.mapstruct.*;
  */
 @Mapper(componentModel = "spring", uses = { XaPhuongMapper.class })
 public interface KhachHangMapper extends EntityMapper<KhachHangDTO, KhachHang> {
-    @Mapping(target = "diaChi", source = "diaChi", qualifiedByName = "id")
+    @Mapping(target = "xa", source = "xa", qualifiedByName = "id")
     KhachHangDTO toDto(KhachHang s);
 
     @Named("id")

@@ -40,34 +40,35 @@ describe('Component Tests', () => {
     });
 
     describe('ngOnInit', () => {
-      it('Should call diaChi query and add missing value', () => {
+      it('Should call XaPhuong query and add missing value', () => {
         const khachHang: IKhachHang = { id: 456 };
-        const diaChi: IXaPhuong = { id: 86981 };
-        khachHang.diaChi = diaChi;
+        const xa: IXaPhuong = { id: 86981 };
+        khachHang.xa = xa;
 
-        const diaChiCollection: IXaPhuong[] = [{ id: 97218 }];
-        jest.spyOn(xaPhuongService, 'query').mockReturnValue(of(new HttpResponse({ body: diaChiCollection })));
-        const expectedCollection: IXaPhuong[] = [diaChi, ...diaChiCollection];
+        const xaPhuongCollection: IXaPhuong[] = [{ id: 97218 }];
+        jest.spyOn(xaPhuongService, 'query').mockReturnValue(of(new HttpResponse({ body: xaPhuongCollection })));
+        const additionalXaPhuongs = [xa];
+        const expectedCollection: IXaPhuong[] = [...additionalXaPhuongs, ...xaPhuongCollection];
         jest.spyOn(xaPhuongService, 'addXaPhuongToCollectionIfMissing').mockReturnValue(expectedCollection);
 
         activatedRoute.data = of({ khachHang });
         comp.ngOnInit();
 
         expect(xaPhuongService.query).toHaveBeenCalled();
-        expect(xaPhuongService.addXaPhuongToCollectionIfMissing).toHaveBeenCalledWith(diaChiCollection, diaChi);
-        expect(comp.diaChisCollection).toEqual(expectedCollection);
+        expect(xaPhuongService.addXaPhuongToCollectionIfMissing).toHaveBeenCalledWith(xaPhuongCollection, ...additionalXaPhuongs);
+        expect(comp.xaPhuongsSharedCollection).toEqual(expectedCollection);
       });
 
       it('Should update editForm', () => {
         const khachHang: IKhachHang = { id: 456 };
-        const diaChi: IXaPhuong = { id: 92207 };
-        khachHang.diaChi = diaChi;
+        const xa: IXaPhuong = { id: 92207 };
+        khachHang.xa = xa;
 
         activatedRoute.data = of({ khachHang });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(khachHang));
-        expect(comp.diaChisCollection).toContain(diaChi);
+        expect(comp.xaPhuongsSharedCollection).toContain(xa);
       });
     });
 

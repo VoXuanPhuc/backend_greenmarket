@@ -13,17 +13,16 @@
   ],
   "relationships": [
     {
-      "relationshipType": "one-to-one",
-      "otherEntityName": "xaPhuong",
-      "otherEntityRelationshipName": "nhaCungCap",
-      "relationshipName": "diaChi",
-      "ownerSide": true
-    },
-    {
       "relationshipType": "one-to-many",
       "otherEntityName": "nongSan",
       "otherEntityRelationshipName": "nhacc",
       "relationshipName": "nongSan"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "xaPhuong",
+      "otherEntityRelationshipName": "nhaCungCap",
+      "relationshipName": "xa"
     }
   ],
   "entityTableName": "nha_cung_cap",

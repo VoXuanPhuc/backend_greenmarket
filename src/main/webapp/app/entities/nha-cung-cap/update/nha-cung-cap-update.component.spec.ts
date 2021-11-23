@@ -40,34 +40,35 @@ describe('Component Tests', () => {
     });
 
     describe('ngOnInit', () => {
-      it('Should call diaChi query and add missing value', () => {
+      it('Should call XaPhuong query and add missing value', () => {
         const nhaCungCap: INhaCungCap = { id: 456 };
-        const diaChi: IXaPhuong = { id: 40939 };
-        nhaCungCap.diaChi = diaChi;
+        const xa: IXaPhuong = { id: 40939 };
+        nhaCungCap.xa = xa;
 
-        const diaChiCollection: IXaPhuong[] = [{ id: 32402 }];
-        jest.spyOn(xaPhuongService, 'query').mockReturnValue(of(new HttpResponse({ body: diaChiCollection })));
-        const expectedCollection: IXaPhuong[] = [diaChi, ...diaChiCollection];
+        const xaPhuongCollection: IXaPhuong[] = [{ id: 32402 }];
+        jest.spyOn(xaPhuongService, 'query').mockReturnValue(of(new HttpResponse({ body: xaPhuongCollection })));
+        const additionalXaPhuongs = [xa];
+        const expectedCollection: IXaPhuong[] = [...additionalXaPhuongs, ...xaPhuongCollection];
         jest.spyOn(xaPhuongService, 'addXaPhuongToCollectionIfMissing').mockReturnValue(expectedCollection);
 
         activatedRoute.data = of({ nhaCungCap });
         comp.ngOnInit();
 
         expect(xaPhuongService.query).toHaveBeenCalled();
-        expect(xaPhuongService.addXaPhuongToCollectionIfMissing).toHaveBeenCalledWith(diaChiCollection, diaChi);
-        expect(comp.diaChisCollection).toEqual(expectedCollection);
+        expect(xaPhuongService.addXaPhuongToCollectionIfMissing).toHaveBeenCalledWith(xaPhuongCollection, ...additionalXaPhuongs);
+        expect(comp.xaPhuongsSharedCollection).toEqual(expectedCollection);
       });
 
       it('Should update editForm', () => {
         const nhaCungCap: INhaCungCap = { id: 456 };
-        const diaChi: IXaPhuong = { id: 50102 };
-        nhaCungCap.diaChi = diaChi;
+        const xa: IXaPhuong = { id: 50102 };
+        nhaCungCap.xa = xa;
 
         activatedRoute.data = of({ nhaCungCap });
         comp.ngOnInit();
 
         expect(comp.editForm.value).toEqual(expect.objectContaining(nhaCungCap));
-        expect(comp.diaChisCollection).toContain(diaChi);
+        expect(comp.xaPhuongsSharedCollection).toContain(xa);
       });
     });
 

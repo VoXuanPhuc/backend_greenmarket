@@ -1,8 +1,8 @@
 import * as dayjs from 'dayjs';
-import { IXaPhuong } from 'app/entities/xa-phuong/xa-phuong.model';
 import { IYeuThich } from 'app/entities/yeu-thich/yeu-thich.model';
 import { IDanhGia } from 'app/entities/danh-gia/danh-gia.model';
 import { IHoaDon } from 'app/entities/hoa-don/hoa-don.model';
+import { IXaPhuong } from 'app/entities/xa-phuong/xa-phuong.model';
 
 export interface IKhachHang {
   id?: number;
@@ -14,10 +14,10 @@ export interface IKhachHang {
   ngaySinh?: dayjs.Dayjs;
   gioitinh?: string | null;
   chitietdiachi?: string | null;
-  diaChi?: IXaPhuong | null;
   yeuThiches?: IYeuThich[] | null;
   danhGias?: IDanhGia[] | null;
   hoaDons?: IHoaDon[] | null;
+  xa?: IXaPhuong | null;
 }
 
 export class KhachHang implements IKhachHang {
@@ -31,10 +31,10 @@ export class KhachHang implements IKhachHang {
     public ngaySinh?: dayjs.Dayjs,
     public gioitinh?: string | null,
     public chitietdiachi?: string | null,
-    public diaChi?: IXaPhuong | null,
     public yeuThiches?: IYeuThich[] | null,
     public danhGias?: IDanhGia[] | null,
-    public hoaDons?: IHoaDon[] | null
+    public hoaDons?: IHoaDon[] | null,
+    public xa?: IXaPhuong | null
   ) {}
 }
 

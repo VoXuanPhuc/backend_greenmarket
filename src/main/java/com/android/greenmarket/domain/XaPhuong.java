@@ -2,6 +2,8 @@ package com.android.greenmarket.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -23,6 +25,16 @@ public class XaPhuong implements Serializable {
 
     @Column(name = "ten")
     private String ten;
+
+    @OneToMany(mappedBy = "xa")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "yeuThiches", "danhGias", "hoaDons", "xa" }, allowSetters = true)
+    private Set<KhachHang> khachHangs = new HashSet<>();
+
+    @OneToMany(mappedBy = "xa")
+    @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+    @JsonIgnoreProperties(value = { "nongSans", "xa" }, allowSetters = true)
+    private Set<NhaCungCap> nhaCungCaps = new HashSet<>();
 
     @ManyToOne
     @JsonIgnoreProperties(value = { "xaPhuongs", "tinh" }, allowSetters = true)
@@ -53,6 +65,68 @@ public class XaPhuong implements Serializable {
 
     public void setTen(String ten) {
         this.ten = ten;
+    }
+
+    public Set<KhachHang> getKhachHangs() {
+        return this.khachHangs;
+    }
+
+    public XaPhuong khachHangs(Set<KhachHang> khachHangs) {
+        this.setKhachHangs(khachHangs);
+        return this;
+    }
+
+    public XaPhuong addKhachHang(KhachHang khachHang) {
+        this.khachHangs.add(khachHang);
+        khachHang.setXa(this);
+        return this;
+    }
+
+    public XaPhuong removeKhachHang(KhachHang khachHang) {
+        this.khachHangs.remove(khachHang);
+        khachHang.setXa(null);
+        return this;
+    }
+
+    public void setKhachHangs(Set<KhachHang> khachHangs) {
+        if (this.khachHangs != null) {
+            this.khachHangs.forEach(i -> i.setXa(null));
+        }
+        if (khachHangs != null) {
+            khachHangs.forEach(i -> i.setXa(this));
+        }
+        this.khachHangs = khachHangs;
+    }
+
+    public Set<NhaCungCap> getNhaCungCaps() {
+        return this.nhaCungCaps;
+    }
+
+    public XaPhuong nhaCungCaps(Set<NhaCungCap> nhaCungCaps) {
+        this.setNhaCungCaps(nhaCungCaps);
+        return this;
+    }
+
+    public XaPhuong addNhaCungCap(NhaCungCap nhaCungCap) {
+        this.nhaCungCaps.add(nhaCungCap);
+        nhaCungCap.setXa(this);
+        return this;
+    }
+
+    public XaPhuong removeNhaCungCap(NhaCungCap nhaCungCap) {
+        this.nhaCungCaps.remove(nhaCungCap);
+        nhaCungCap.setXa(null);
+        return this;
+    }
+
+    public void setNhaCungCaps(Set<NhaCungCap> nhaCungCaps) {
+        if (this.nhaCungCaps != null) {
+            this.nhaCungCaps.forEach(i -> i.setXa(null));
+        }
+        if (nhaCungCaps != null) {
+            nhaCungCaps.forEach(i -> i.setXa(this));
+        }
+        this.nhaCungCaps = nhaCungCaps;
     }
 
     public HuyenQuan getHuyen() {

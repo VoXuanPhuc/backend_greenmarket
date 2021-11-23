@@ -8,6 +8,18 @@
   ],
   "relationships": [
     {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "khachHang",
+      "otherEntityRelationshipName": "xa",
+      "relationshipName": "khachHang"
+    },
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "nhaCungCap",
+      "otherEntityRelationshipName": "xa",
+      "relationshipName": "nhaCungCap"
+    },
+    {
       "relationshipType": "many-to-one",
       "otherEntityName": "huyenQuan",
       "otherEntityRelationshipName": "xaPhuong",

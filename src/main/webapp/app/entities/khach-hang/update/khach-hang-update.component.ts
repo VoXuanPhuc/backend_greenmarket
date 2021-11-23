@@ -20,7 +20,7 @@ import { XaPhuongService } from 'app/entities/xa-phuong/service/xa-phuong.servic
 export class KhachHangUpdateComponent implements OnInit {
   isSaving = false;
 
-  diaChisCollection: IXaPhuong[] = [];
+  xaPhuongsSharedCollection: IXaPhuong[] = [];
 
   editForm = this.fb.group({
     id: [],
@@ -32,7 +32,7 @@ export class KhachHangUpdateComponent implements OnInit {
     ngaySinh: [null, [Validators.required]],
     gioitinh: [],
     chitietdiachi: [],
-    diaChi: [],
+    xa: [],
   });
 
   constructor(
@@ -103,22 +103,20 @@ export class KhachHangUpdateComponent implements OnInit {
       ngaySinh: khachHang.ngaySinh ? khachHang.ngaySinh.format(DATE_TIME_FORMAT) : null,
       gioitinh: khachHang.gioitinh,
       chitietdiachi: khachHang.chitietdiachi,
-      diaChi: khachHang.diaChi,
+      xa: khachHang.xa,
     });
 
-    this.diaChisCollection = this.xaPhuongService.addXaPhuongToCollectionIfMissing(this.diaChisCollection, khachHang.diaChi);
+    this.xaPhuongsSharedCollection = this.xaPhuongService.addXaPhuongToCollectionIfMissing(this.xaPhuongsSharedCollection, khachHang.xa);
   }
 
   protected loadRelationshipsOptions(): void {
     this.xaPhuongService
-      .query({ filter: 'khachhang-is-null' })
+      .query()
       .pipe(map((res: HttpResponse<IXaPhuong[]>) => res.body ?? []))
       .pipe(
-        map((xaPhuongs: IXaPhuong[]) =>
-          this.xaPhuongService.addXaPhuongToCollectionIfMissing(xaPhuongs, this.editForm.get('diaChi')!.value)
-        )
+        map((xaPhuongs: IXaPhuong[]) => this.xaPhuongService.addXaPhuongToCollectionIfMissing(xaPhuongs, this.editForm.get('xa')!.value))
       )
-      .subscribe((xaPhuongs: IXaPhuong[]) => (this.diaChisCollection = xaPhuongs));
+      .subscribe((xaPhuongs: IXaPhuong[]) => (this.xaPhuongsSharedCollection = xaPhuongs));
   }
 
   protected createFromForm(): IKhachHang {
@@ -133,7 +131,7 @@ export class KhachHangUpdateComponent implements OnInit {
       ngaySinh: this.editForm.get(['ngaySinh'])!.value ? dayjs(this.editForm.get(['ngaySinh'])!.value, DATE_TIME_FORMAT) : undefined,
       gioitinh: this.editForm.get(['gioitinh'])!.value,
       chitietdiachi: this.editForm.get(['chitietdiachi'])!.value,
-      diaChi: this.editForm.get(['diaChi'])!.value,
+      xa: this.editForm.get(['xa'])!.value,
     };
   }
 }

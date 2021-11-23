@@ -28,7 +28,7 @@ public class HuyenQuan implements Serializable {
 
     @OneToMany(mappedBy = "huyen")
     @Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
-    @JsonIgnoreProperties(value = { "huyen" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "khachHangs", "nhaCungCaps", "huyen" }, allowSetters = true)
     private Set<XaPhuong> xaPhuongs = new HashSet<>();
 
     @ManyToOne

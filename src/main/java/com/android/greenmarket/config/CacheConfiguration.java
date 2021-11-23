@@ -78,6 +78,8 @@ public class CacheConfiguration {
             createCache(cm, com.android.greenmarket.domain.HinhThucGiaoHang.class.getName());
             createCache(cm, com.android.greenmarket.domain.HinhThucGiaoHang.class.getName() + ".hoaDons");
             createCache(cm, com.android.greenmarket.domain.YeuThich.class.getName());
+            createCache(cm, com.android.greenmarket.domain.XaPhuong.class.getName() + ".khachHangs");
+            createCache(cm, com.android.greenmarket.domain.XaPhuong.class.getName() + ".nhaCungCaps");
             // jhipster-needle-ehcache-add-entry
         };
     }

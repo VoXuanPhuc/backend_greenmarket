@@ -22,10 +22,10 @@
         <dd>
           <span>{{ nhaCungCap.chitietdiachi }}</span>
         </dd>
-        <dt><span>Dia Chi</span></dt>
+        <dt><span>Xa</span></dt>
         <dd>
-          <div *ngIf="nhaCungCap.diaChi">
-            <a [routerLink]="['/xa-phuong', nhaCungCap.diaChi?.id, 'view']">{{ nhaCungCap.diaChi?.id }}</a>
+          <div *ngIf="nhaCungCap.xa">
+            <a [routerLink]="['/xa-phuong', nhaCungCap.xa?.id, 'view']">{{ nhaCungCap.xa?.id }}</a>
           </div>
         </dd>
       </dl>
