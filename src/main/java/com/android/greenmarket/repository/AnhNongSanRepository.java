@@ -1,7 +1,9 @@
 package com.android.greenmarket.repository;
 
 import com.android.greenmarket.domain.AnhNongSan;
-import org.springframework.data.jpa.repository.*;
+import com.android.greenmarket.domain.NongSan;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface AnhNongSanRepository extends JpaRepository<AnhNongSan, Long> {}
+public interface AnhNongSanRepository extends JpaRepository<AnhNongSan, Long> {
+    List<AnhNongSan> findByAnhnongsan(NongSan anhnongsan);
+}

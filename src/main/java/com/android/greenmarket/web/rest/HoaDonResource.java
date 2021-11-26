@@ -1,8 +1,11 @@
 package com.android.greenmarket.web.rest;
 
+import com.android.greenmarket.domain.KhachHang;
 import com.android.greenmarket.repository.HoaDonRepository;
+import com.android.greenmarket.repository.KhachHangRepository;
 import com.android.greenmarket.service.HoaDonService;
 import com.android.greenmarket.service.dto.HoaDonDTO;
+import com.android.greenmarket.service.mapper.HoaDonMapper;
 import com.android.greenmarket.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,9 +16,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
@@ -36,6 +48,12 @@ public class HoaDonResource {
     private final HoaDonService hoaDonService;
 
     private final HoaDonRepository hoaDonRepository;
+
+    @Autowired
+    KhachHangRepository khachHangRepository;
+
+    @Autowired
+    HoaDonMapper hoaDonMapper;
 
     public HoaDonResource(HoaDonService hoaDonService, HoaDonRepository hoaDonRepository) {
         this.hoaDonService = hoaDonService;
@@ -170,5 +188,12 @@ public class HoaDonResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/hoa-dons-khachhang/{idKhachHang}")
+    public List<HoaDonDTO> getHoadonByKhach(@PathVariable Long idKhachHang) {
+        KhachHang kh = khachHangRepository.findById(idKhachHang).get();
+
+        return hoaDonMapper.toDto(hoaDonRepository.findByKhachhang(kh));
     }
 }

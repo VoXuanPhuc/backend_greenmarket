@@ -1,7 +1,9 @@
 package com.android.greenmarket.repository;
 
 import com.android.greenmarket.domain.ChiTietHoaDon;
-import org.springframework.data.jpa.repository.*;
+import com.android.greenmarket.domain.HoaDon;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -9,4 +11,6 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface ChiTietHoaDonRepository extends JpaRepository<ChiTietHoaDon, Long> {}
+public interface ChiTietHoaDonRepository extends JpaRepository<ChiTietHoaDon, Long> {
+    List<ChiTietHoaDon> findByHoadon(HoaDon hoadon);
+}

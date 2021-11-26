@@ -1,8 +1,11 @@
 package com.android.greenmarket.web.rest;
 
+import com.android.greenmarket.domain.NongSan;
 import com.android.greenmarket.repository.AnhNongSanRepository;
+import com.android.greenmarket.repository.NongSanRepository;
 import com.android.greenmarket.service.AnhNongSanService;
 import com.android.greenmarket.service.dto.AnhNongSanDTO;
+import com.android.greenmarket.service.mapper.AnhNongSanMapper;
 import com.android.greenmarket.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,9 +16,18 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
@@ -36,6 +48,12 @@ public class AnhNongSanResource {
     private final AnhNongSanService anhNongSanService;
 
     private final AnhNongSanRepository anhNongSanRepository;
+
+    @Autowired
+    NongSanRepository nongSanRepository;
+
+    @Autowired
+    AnhNongSanMapper anhNongSanMapper;
 
     public AnhNongSanResource(AnhNongSanService anhNongSanService, AnhNongSanRepository anhNongSanRepository) {
         this.anhNongSanService = anhNongSanService;
@@ -170,5 +188,11 @@ public class AnhNongSanResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("/get-anh-nong-sans-by-Nongsan/{idNongSan}")
+    public List<AnhNongSanDTO> getAnhNsByNongSan(@PathVariable Long idNongSan) {
+        NongSan ns = nongSanRepository.findById(idNongSan).get();
+        return anhNongSanMapper.toDto(anhNongSanRepository.findByAnhnongsan(ns));
     }
 }

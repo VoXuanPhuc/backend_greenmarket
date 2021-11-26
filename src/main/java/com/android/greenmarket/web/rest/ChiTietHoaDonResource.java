@@ -1,8 +1,12 @@
 package com.android.greenmarket.web.rest;
 
+import com.android.greenmarket.domain.HoaDon;
 import com.android.greenmarket.repository.ChiTietHoaDonRepository;
+import com.android.greenmarket.repository.HoaDonRepository;
 import com.android.greenmarket.service.ChiTietHoaDonService;
 import com.android.greenmarket.service.dto.ChiTietHoaDonDTO;
+import com.android.greenmarket.service.mapper.ChiTietHoaDonMapper;
+import com.android.greenmarket.service.mapper.HoaDonMapper;
 import com.android.greenmarket.web.rest.errors.BadRequestAlertException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -13,6 +17,7 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +41,12 @@ public class ChiTietHoaDonResource {
     private final ChiTietHoaDonService chiTietHoaDonService;
 
     private final ChiTietHoaDonRepository chiTietHoaDonRepository;
+
+    @Autowired
+    HoaDonRepository hoaDonRepository;
+
+    @Autowired
+    ChiTietHoaDonMapper chiTietHoaDonMapper;
 
     public ChiTietHoaDonResource(ChiTietHoaDonService chiTietHoaDonService, ChiTietHoaDonRepository chiTietHoaDonRepository) {
         this.chiTietHoaDonService = chiTietHoaDonService;
@@ -171,5 +182,11 @@ public class ChiTietHoaDonResource {
             .noContent()
             .headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString()))
             .build();
+    }
+
+    @GetMapping("chitiethoadonbyHoadon/{idHoaDon}")
+    public List<ChiTietHoaDonDTO> getCTHDbyHoaDon(@PathVariable Long idHoaDon) {
+        HoaDon hd = hoaDonRepository.findById(idHoaDon).get();
+        return chiTietHoaDonMapper.toDto(chiTietHoaDonRepository.findByHoadon(hd));
     }
 }
